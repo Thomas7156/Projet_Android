@@ -81,6 +81,42 @@
     <string name="recording_set_2">6</string>
     <string name="recording_J1">1</string>
     <string name="recording_J2">2</string>
+    <string name="statistiques_générales_FR">Statistiques générales</string>
+    <string name="statistiques_durée_FR">Durée</string>
+    <string name="statistiques_winning_points_FR">Points gagnés</string>
+    <string name="statistiques_service_FR">Statistiques de service</string>
+    <string name="statistiques_1st_FR">1ères balles</string>
+    <string name="statistiques_aces_FR">Aces</string>
+    <string name="statistiques_double_FR">Doubles fautes</string>
+    <string name="statistiques_break_saved_FR">Balles de break sauvées</string>
+    <string name="statistiques_1st_winning_FR">Points gagnés sur 1ère balle</string>
+    <string name="statistiques_retour_FR">Statistiques de retour</string>
+    <string name="statistiques_break_convert_FR">Balles de break converties</string>
+    <string name="statistiques_2st_wining_FR">Points gagnés sur     2ème balle adversaire</string>
+    <string name="statistiques_pointss_FR">Statistiques des points</string>
+    <string name="statistiques_winning_FR">Points gagnants</string>
+    <string name="statistiques_direct_fault_FR">Fautes directes</string>
+    <string name="statistiques_provo_fault_FR">Fautes provoquées</string>
+    <string name="statistiques_générales_EN">General statistics</string>
+    <string name="statistiques_durée_EN">Duration</string>
+    <string name="statistiques_winning_points_EN">Earned points</string>
+    <string name="statistiques_service_EN">Service statistics</string>
+    <string name="statistiques_1st_EN">Ast balls</string>
+    <string name="statistiques_aces_EN">Aces</string>
+    <string name="statistiques_double_EN">Double faults</string>
+    <string name="statistiques_break_saved_EN">Saved bread balls</string>
+    <string name="statistiques_1st_winning_EN">Points earned on first ball</string>
+    <string name="statistiques_retour_EN">Return statistics</string>
+    <string name="statistiques_break_convert_EN">Converted break balls</string>
+    <string name="statistiques_2st_wining_EN">Points earned on opponent\'s 2nd ball</string>
+    <string name="statistiques_pointss_EN">Points statistics</string>
+    <string name="statistiques_winning_EN">Winning points</string>
+    <string name="statistiques_direct_fault_EN">Direct faults</string>
+    <string name="statistiques_provo_fault_EN">Misconducts</string>
+    <string name="statistiques_empty_stats">-</string>
+    <string name="statistiques_joueur1">Joueur 1</string>
+    <string name="statistiques_joueur2">Joueur 2</string>
+
 
 
 
