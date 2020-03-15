@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">App_Projet</string>
     <string name="action_settings">Settings</string>
+    <string name="logo">">Application logo</string>
+    <string name="arrow">Arrow to go back to previous activity</string>
+    <string name="menu">Button to go to menu</string>
+    <string name="menu_new_button">Button to add a new game</string>
+    <string name="menu_previous_button">">Button to see the previous games</string>
+    <string name="toolbar_menu_title_FR">Menu</string>
+    <string name="toolbar_menu_ss_title_FR">Menu</string>
+    <string name="toolbar_accueil_ss_title_FR">Accueil</string>
+    <string name="toolbar_accueil_title_FR">Derniers matchs joués</string>
+    <string name="toolbar_nouveau_ss_title_FR">Nouveau match</string>
+    <string name="toolbar_nouveau_title_FR">Ajouter un match</string>
+    <string name="toolbar_enregistrement_ss_title_FR">Match en cours</string>
+    <string name="toolbar_enregistrement_title_FR">Match en cours</string>
+    <string name="toolbar_stats_ss_title_FR">Statistiques</string>
+    <string name="toolbar_stats_title_FR">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM</string>
+    <string name="toolbar_menu_title_EN">Menu</string>
+    <string name="toolbar_menu_ss_title_EN">Menu</string>
+    <string name="toolbar_accueil_ss_title_EN">Home</string>
+    <string name="toolbar_accueil_title_EN">Last played games</string>
+    <string name="toolbar_nouveau_ss_title_EN">New game</string>
+    <string name="toolbar_nouveau_title_EN">Add a game</string>
+    <string name="toolbar_enregistrement_ss_title_EN">Game in progress</string>
+    <string name="toolbar_enregistrement_title_EN">Recording a game</string>
+    <string name="toolbar_stats_ss_title_EN">Statistics</string>
+    <string name="toolbar_stats_title_EN">Player 1 vs. Player 2 HH/MM/YYYY - HH:MM</string>
+
+
+
 </resources>
