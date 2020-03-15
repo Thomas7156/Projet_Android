@@ -28,7 +28,7 @@
     <string name="toolbar_nouveau_ss_title_FR">Nouveau match</string>
     <string name="toolbar_nouveau_title_FR">Ajouter un match</string>
     <string name="toolbar_enregistrement_ss_title_FR">Match en cours</string>
-    <string name="toolbar_enregistrement_title_FR">Enregistrement d'un match</string>
+    <string name="toolbar_enregistrement_title_FR">Enregistrement dun match</string>
     <string name="toolbar_stats_ss_title_FR">Statistiques</string>
     <string name="toolbar_stats_title_FR">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM</string>
     <string name="toolbar_menu_title_EN">Menu</string>
