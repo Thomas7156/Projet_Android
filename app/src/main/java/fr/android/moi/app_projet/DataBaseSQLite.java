@@ -16,7 +16,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     private static final String TABLE_PICTURES = "Pictures";
     private static final int VERSION = 1;
 
-    // ******** Fields ********
+    // ******** Colums of tables ********
     private static final String COLUMS_ID = "ID";
 
     //Location
@@ -50,7 +50,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
     //Pictures
     private static final String COLUMS_Path = "PathToPpicture";
-    private static final String COLUMS_Match = "IDMatch";
+    private static final String COLUMS_IDMatch = "IDMatch";
 
     SQLiteDatabase database;
 
@@ -62,8 +62,8 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_LOCATION + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMS_Longitude + "FLOAT,"
-                + COLUMS_Latitude + "FLOAT)");
+                + COLUMS_Longitude + "DOUBLE,"
+                + COLUMS_Latitude + "DOUBLE);");
 
         db.execSQL("CREATE TABLE " + TABLE_SCORE + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -71,7 +71,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 + COLUMS_Second + "INTEGER,"
                 + COLUMS_Third + "INTEGER,"
                 + COLUMS_Forth + "INTEGER,"
-                + COLUMS_Fifth + "INTEGER)");
+                + COLUMS_Fifth + "INTEGER);");
 
         db.execSQL("CREATE TABLE " + TABLE_STATISTICS + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -83,10 +83,10 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_MATCH + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMS_P1 + "INTEGER,"
-                + COLUMS_P2 + "INTEGER,"
+                + COLUMS_P1 + "TEXT,"
+                + COLUMS_P2 + "TEXT,"
                 + COLUMS_Duration + "INTEGER,"
-                + COLUMS_Date + "DATE,"
+                + COLUMS_Date + "TEXT,"
                 + COLUMS_Location + "INTEGER,"
                 + COLUMS_ScoreP1 + "INTEGER,"
                 + COLUMS_ScoreP2 + "INTEGER,"
@@ -101,99 +101,197 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_PICTURES + " ( "
                 + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMS_Path + " INTEGER, "
-                + COLUMS_Match + " INTEGER,"
-                + "FOREIGN KEY (" + COLUMS_Match + ") REFERENCES " + TABLE_MATCH + "(" + COLUMS_ID + "));");
+                + COLUMS_IDMatch + " INTEGER,"
+                + "FOREIGN KEY (" + COLUMS_IDMatch + ") REFERENCES " + TABLE_MATCH + "(" + COLUMS_ID + "));");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCALISATION);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SETS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOCATION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MATCH);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PICTURES);
         onCreate(db);
     }
 
-    // Ajout d'une localisation pour un match localisations
-    public boolean add_data_localiqations(String id, String longitude, Float latitude) {
+    public boolean addLocation(int id, double latitude, double longitude) {
 
         database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMS_ID, id);
-        contentValues.put(COLUMS_Longitude, longitude);
         contentValues.put(COLUMS_Latitude, latitude);
-        long result = database.insert(TABLE_LOCALISATION, null, contentValues);
+        contentValues.put(COLUMS_Longitude, longitude);
 
-        if (result == -1) return false;
-        else return true;
-    }
+        long result = database.insert(TABLE_LOCATION, null, contentValues);
 
-    // Ajout d'une localisation pour un match localisations
-    public boolean add_data_sets(String id, int un, int deux, int trois, int quatre, int cinq) {
-
-        database = this.getWritableDatabase();
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMS_ID, id);
-        contentValues.put(COLUMS_un, un);
-        contentValues.put(COLUMS_deux, deux);
-        contentValues.put(COLUMS_trois, trois);
-        contentValues.put(COLUMS_quatre, quatre);
-        contentValues.put(COLUMS_cinq, cinq);
-        long result = database.insert(TABLE_SETS, null, contentValues);
-
-        if (result == -1) return false;
-        else return true;
-    }
-
-
-    public Cursor getAllData() {
-        database = this.getReadableDatabase();
-        String requete = "SELECT * FROM " + TABLE_NAME + " ORDER BY " + COLUMS_date + " DESC";
-        Cursor cursor = database.rawQuery(requete, null);
-
-        return cursor;
-    }
-
-    public Cursor getDateBetween(String dateStart, String dateEnd) {
-        database = this.getReadableDatabase();
-
-        if (!dateStart.equals(dateEnd)) {
-            String requete = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMS_date
-                    + " BETWEEN date('" + dateStart + "') AND date('" + dateEnd + "') ORDER BY " + COLUMS_date + " DESC";
-            Cursor cursor = database.rawQuery(requete, null);
-
-            return cursor;
-        } else {
-            String requete = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMS_date
-                    + " = date('" + dateStart + "') ORDER BY " + COLUMS_date + " DESC";
-            Cursor cursor = database.rawQuery(requete, null);
-
-            return cursor;
+        if (result == -1){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 
-    public Cursor getDateUp(String dateStart) {
+    public boolean addScore(int id, int first, int second, int third, int forth, int fifth) {
+
+        database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMS_ID, id);
+        contentValues.put(COLUMS_First, first);
+        contentValues.put(COLUMS_Second, second);
+        contentValues.put(COLUMS_Third, third);
+        contentValues.put(COLUMS_Forth, forth);
+        contentValues.put(COLUMS_Fifth, fifth);
+
+        long result = database.insert(TABLE_SCORE, null, contentValues);
+
+        if (result == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean addStatistics(int id, int pointsWin, int setsWin, int aces, int firstBalls, int directFouls) {
+
+        database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMS_ID, id);
+        contentValues.put(COLUMS_Points, pointsWin);
+        contentValues.put(COLUMS_FirstBall, firstBalls);
+        contentValues.put(COLUMS_Aces, aces);
+        contentValues.put(COLUMS_Sets, setsWin);
+        contentValues.put(COLUMS_DirectFouls, directFouls);
+
+        long result = database.insert(TABLE_STATISTICS, null, contentValues);
+
+        if (result == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean addPicture(int id, String path, int idMatch) {
+
+        database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMS_ID, id);
+        contentValues.put(COLUMS_Path, path);
+        contentValues.put(COLUMS_IDMatch, idMatch);
+
+        long result = database.insert(TABLE_PICTURES, null, contentValues);
+
+        if (result == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public boolean addMatch(int id,String P1, String P2, String duration, String date, int location, int scoreP1, int scoreP2, int statsP1, int statsP2) {
+
+        database = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMS_ID, id);
+        contentValues.put(COLUMS_P1, P1);
+        contentValues.put(COLUMS_P2, P2);
+        contentValues.put(COLUMS_Duration, duration);
+        contentValues.put(COLUMS_Date, date);
+        contentValues.put(COLUMS_Location, location);
+        contentValues.put(COLUMS_ScoreP1, scoreP1);
+        contentValues.put(COLUMS_ScoreP2, scoreP2);
+        contentValues.put(COLUMS_StatsP1, statsP1);
+        contentValues.put(COLUMS_StatsP2, statsP2);
+
+        long result = database.insert(TABLE_MATCH, null, contentValues);
+
+        if (result == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    public Cursor getAllPlayers() {
         database = this.getReadableDatabase();
-        String requete = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMS_date
-                + " > date('" + dateStart + "') ORDER BY " + COLUMS_date + " DESC";
-        Cursor cursor = database.rawQuery(requete, null);
+
+        String countQuery = "SELECT " + COLUMS_P1 + "," + COLUMS_P2 + " FROM " + TABLE_MATCH;
+        Cursor cursor = database.rawQuery(countQuery, null);
 
         return cursor;
     }
 
-    public Cursor getDateDown(String dateEnd) {
+    public Cursor getIDsMatchs() {
         database = this.getReadableDatabase();
-        String requete = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMS_date
-                + " < date('" + dateEnd + "') ORDER BY " + COLUMS_date + " DESC";
-        Cursor cursor = database.rawQuery(requete, null);
+
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_MATCH;
+        Cursor cursor = database.rawQuery(countQuery, null);
 
         return cursor;
     }
 
-    public Cursor getAllValue() {
+    public Cursor getAllMatchs() {
         database = this.getReadableDatabase();
-        String requete = "SELECT sum(" + COLUMS_value + ") FROM " + TABLE_NAME;
-        Cursor cursor = database.rawQuery(requete, null);
+
+        String countQuery = "SELECT * FROM " + TABLE_MATCH;
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        return cursor;
+    }
+
+    public Cursor getLocationByID(int ID) {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT * FROM " + TABLE_LOCATION + " WHERE " + COLUMS_ID + " = " + ID;
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        return cursor;
+    }
+
+    public Cursor getScoreByID(int ID) {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT * FROM " + TABLE_SCORE + " WHERE " + COLUMS_ID + " = " + ID;
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        return cursor;
+    }
+
+    public Cursor getStatisticsByID(int ID) {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT * FROM " + TABLE_STATISTICS + " WHERE " + COLUMS_ID + " = " + ID;
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        return cursor;
+    }
+
+    public Cursor getPictureByID(int ID) {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT " + COLUMS_Path + " FROM " + TABLE_PICTURES + " WHERE " + COLUMS_IDMatch + " = " + ID;
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        return cursor;
+
+    }
+
+    public Cursor getMatchByID(int ID) {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT * FROM " + TABLE_MATCH + " WHERE " + COLUMS_ID + " = " + ID;
+        Cursor cursor = database.rawQuery(countQuery, null);
 
         return cursor;
     }
