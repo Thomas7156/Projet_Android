@@ -4,8 +4,23 @@
     <string name="logo">">Application logo</string>
     <string name="arrow">Arrow to go back to previous activity</string>
     <string name="menu">Button to go to menu</string>
+    <string name="delete">Delete a match</string>
+    <string name="border_match">border around previous match</string>
     <string name="menu_new_button">Button to add a new game</string>
-    <string name="menu_previous_button">">Button to see the previous games</string>
+    <string name="menu_previous_button">Button to see the previous games</string>
+    <string name="accueil_add_button_FR">Ajouter un match</string>
+    <string name="accueil_add_button_EN">Add a game</string>
+    <string name="new_fill">Fill new game fields</string>
+    <string name="new_locate">Locate game coordinates</string>
+    <string name="new_start">Start a new game</string>
+    <string name="menu_previous_FR">Matchs précédents</string>
+    <string name="menu_new_FR">Nouveau match</string>
+    <string name="menu_previous_EN">Previous games</string>
+    <string name="menu_new_EN">New game</string>
+    <string name="new_locate_FR">Localiser le match</string>
+    <string name="new_locate_EN">Locate the game</string>
+    <string name="new_start_FR">Commencer</string>
+    <string name="new_start_EN">Start</string>
     <string name="toolbar_menu_title_FR">Menu</string>
     <string name="toolbar_menu_ss_title_FR">Menu</string>
     <string name="toolbar_accueil_ss_title_FR">Accueil</string>
@@ -13,7 +28,7 @@
     <string name="toolbar_nouveau_ss_title_FR">Nouveau match</string>
     <string name="toolbar_nouveau_title_FR">Ajouter un match</string>
     <string name="toolbar_enregistrement_ss_title_FR">Match en cours</string>
-    <string name="toolbar_enregistrement_title_FR">Match en cours</string>
+    <string name="toolbar_enregistrement_title_FR">Enregistrement d'un match</string>
     <string name="toolbar_stats_ss_title_FR">Statistiques</string>
     <string name="toolbar_stats_title_FR">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM</string>
     <string name="toolbar_menu_title_EN">Menu</string>
@@ -26,6 +41,49 @@
     <string name="toolbar_enregistrement_title_EN">Recording a game</string>
     <string name="toolbar_stats_ss_title_EN">Statistics</string>
     <string name="toolbar_stats_title_EN">Player 1 vs. Player 2 HH/MM/YYYY - HH:MM</string>
+    <string name="nouveau_nom_joueur_1_FR">Nom Joueur 1</string>
+    <string name="nouveau_nom_joueur_2_FR">Nom Joueur 2</string>
+    <string name="nouveau_locate_FR">Localisation</string>
+    <string name="nouveau_nom_joueur_1_EN">Name Player 1</string>
+    <string name="nouveau_nom_joueur_2_EN">Name Player 2</string>
+    <string name="nouveau_locate_EN">Location</string>
+    <string name="recording_score_FR">SCORE</string>
+    <string name="recording_service_FR">SERVICE : JOUEUR N</string>
+    <string name="recording_1st_ball_FR">1ère balle</string>
+    <string name="recording_2nd_ball_FR">2ème balle</string>
+    <string name="recording_double_FR">Double faute</string>
+    <string name="recording_echange_FR">ECHANGE</string>
+    <string name="recording_winning_point_FR">Point gagnant</string>
+    <string name="recording_direct_fault_FR">Faute directe</string>
+    <string name="recording_provo_faute_FR">Faute provo</string>
+    <string name="recording_photo_FR">Prendre une photo</string>
+    <string name="recording_terminer_FR">Terminer</string>
+    <string name="recording_score_EN">SCORE</string>
+    <string name="recording_service_EN">SERVICE : PLAYER N</string>
+    <string name="recording_1st_ball_EN">1st ball</string>
+    <string name="recording_2nd_ball_EN">2nd ball</string>
+    <string name="recording_double_EN">Double fault</string>
+    <string name="recording_echange_EN">EXCHANGE</string>
+    <string name="recording_winning_point_EN">Winning point</string>
+    <string name="recording_direct_fault_EN">Direct fault</string>
+    <string name="recording_provo_faute_EN">Misconduct</string>
+    <string name="recording_photo_EN">Take a picture</string>
+    <string name="recording_terminer_EN">Finish</string>
+
+    <string name="recording_ace">ACE</string>
+    <string name="recording_Joueur_1">Joueur 1</string>
+    <string name="recording_Joueur_2">Joueur 2</string>
+    <string name="recording_score_1">15</string>
+    <string name="recording_score_2">45</string>
+    <string name="recording_jeu_1">0</string>
+    <string name="recording_jeu_2">6</string>
+    <string name="recording_set_1">2</string>
+    <string name="recording_set_2">6</string>
+    <string name="recording_J1">1</string>
+    <string name="recording_J2">2</string>
+
+
+
 
 
 
