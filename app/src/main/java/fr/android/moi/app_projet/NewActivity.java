@@ -2,27 +2,17 @@ package fr.android.moi.app_projet;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-    // Database
-    DataBaseSQLite dataBaseSQLite;
+import androidx.appcompat.app.AppCompatActivity;
 
+public class NewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        dataBaseSQLite = new DataBaseSQLite(this);
+        setContentView(R.layout.activity_new_game);
     }
 
     @Override
@@ -46,16 +36,22 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public boolean new_game (View view)
+    public boolean previous_games(View view)
     {
-        Intent intent = new Intent(this,NewActivity.class);
+        Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         return (true);
     }
-    public boolean menu (View view)
+    public boolean start(View view)
     {
-        Intent intent = new Intent(this,MenuActivity.class);
+        Intent intent = new Intent(this,RecordingActivity.class);
+        //GET INTENT EXTRA HERE
         startActivity(intent);
         return (true);
+    }
+    public boolean locate(View view)
+    {
+        //LOCATE FUNCTION
+        return(true);
     }
 }

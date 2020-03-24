@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
+    tools:context=".NewActivity"
     tools:showIn="@layout/activity_new_game">
 
 
@@ -85,6 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <ImageView
+        android:onClick="locate"
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
         android:layout_marginRight="6dp"
         android:layout_marginBottom="200dp"
         android:contentDescription="@string/new_locate"
-        android:src="@drawable/new_locate_fr"
+        android:src="@drawable/long_blue_button"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
@@ -117,9 +118,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:layout_width="185dp"
-        android:layout_height="39dp"
+    <TextView
+        android:layout_width="142dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="1dp"
         android:editable="false"
         android:inputType="text"
@@ -128,8 +129,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        app:layout_constraintTop_toTopOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:layout_width="184dp"
@@ -160,6 +163,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <TextView
+        android:onClick="locate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/new_locate_FR"
@@ -171,6 +175,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
     <ImageView
+        android:onClick="start"
         android:id="@+id/imageView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -182,6 +187,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:onClick="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/new_start_FR"
