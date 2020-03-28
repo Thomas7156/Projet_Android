@@ -119,12 +119,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/localisation_text"
         android:layout_width="142dp"
         android:layout_height="25dp"
         android:layout_marginBottom="1dp"
         android:editable="false"
         android:inputType="text"
-        android:text="@string/nouveau_locate"
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
@@ -135,11 +135,11 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
+        android:id="@+id/text_player2"
         android:layout_width="184dp"
         android:layout_height="40dp"
         android:editable="true"
         android:inputType="text"
-        android:text="@string/nouveau_nom_joueur_2"
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
@@ -150,11 +150,11 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
+        android:id="@+id/text_player1"
         android:layout_width="183dp"
         android:layout_height="38dp"
         android:editable="true"
         android:inputType="text"
-        android:text="@string/nouveau_nom_joueur_1"
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
