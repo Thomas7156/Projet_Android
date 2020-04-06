@@ -49,7 +49,7 @@ public class NewActivity extends FragmentActivity implements OnMapReadyCallback,
         // Define the criteria how to select the location provider -> use
         // default
         Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria)
+        provider = locationManager.getBestProvider(criteria,false);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -206,5 +206,6 @@ public class NewActivity extends FragmentActivity implements OnMapReadyCallback,
     }
     public boolean locate(View view)
     {
+        return (true);
     }
 }
