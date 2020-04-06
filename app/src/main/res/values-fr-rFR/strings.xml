@@ -1,21 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Tennis Tracker</string>
-    <string name="action_settings">Settings</string>
-    <string name="logo">Application logo</string>
-    <string name="arrow">Arrow to go back to previous activity</string>
-    <string name="menu">Button to go to menu</string>
-    <string name="delete">Delete a match</string>
-    <string name="border_match">Border around previous match</string>
-    <string name="menu_new_button">Button to add a new game</string>
-    <string name="menu_previous_button">Button to see the previous games</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="logo">Logo de l\'application</string>
+    <string name="arrow">Flèche pour revenir à l\'activité précédente</string>
+    <string name="menu">Bouton pour aller au menu</string>
+    <string name="delete">Supprimer un match</string>
+    <string name="border_match">Bordure autour d\'un match précédent</string>
+    <string name="menu_new_button">Bouton pour ajouter un match</string>
+    <string name="menu_previous_button">Bouton pour voir les matchs précédents</string>
+    <string name="new_locate_FR">Localiser le match</string>
     <string name="accueil_add_button">Ajouter un match</string>
-    <string name="new_fill">Fill new game fields</string>
-    <string name="new_locate">Locate game coordinates</string>
-    <string name="new_start">Start a new game</string>
     <string name="menu_previous">Matchs précédents</string>
     <string name="menu_new">Nouveau match</string>
-    <string name="new_locate_FR">Localiser le match</string>
     <string name="new_start_FR">Commencer</string>
+    <string name="new_fill">Remplir les champs pour un nouveau match</string>
+    <string name="new_locate">Localiser les coordonnés du match</string>
+    <string name="new_start">Commencer un nouveau match</string>
     <string name="toolbar_menu_title">Menu</string>
     <string name="toolbar_menu_ss_title">Menu</string>
     <string name="toolbar_accueil_ss_title">Accueil</string>
@@ -26,10 +26,9 @@
     <string name="toolbar_enregistrement_title">Enregistrement d\'un match</string>
     <string name="toolbar_stats_ss_title">Statistiques</string>
     <string name="toolbar_stats_title">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM</string>
-    <string name="nouveau_nom_joueur_1">Nom Joueur 1</string>
     <string name="nouveau_nom_joueur_2">Nom Joueur 2</string>
+    <string name="nouveau_nom_joueur_1">Nom Joueur 1</string>
     <string name="nouveau_locate">Localisation</string>
-    <string name="recording_score" translatable="false">SCORE</string>
     <string name="recording_service">SERVICE : JOUEUR N</string>
     <string name="recording_1st_ball">1ère balle</string>
     <string name="recording_2nd_ball">2ème balle</string>
@@ -40,24 +39,11 @@
     <string name="recording_provo_faute">Faute provo</string>
     <string name="recording_photo">Prendre une photo</string>
     <string name="recording_terminer">Terminer</string>
-
-    <string name="recording_ace" translatable="false">ACE</string>
-    <string name="recording_Joueur_1" translatable="false">Joueur 1</string>
-    <string name="recording_Joueur_2" translatable="false">Joueur 2</string>
-    <string name="recording_score_1" translatable="false">15</string>
-    <string name="recording_score_2" translatable="false">45</string>
-    <string name="recording_jeu_1" translatable="false">0</string>
-    <string name="recording_jeu_2" translatable="false">6</string>
-    <string name="recording_set_1" translatable="false">2</string>
-    <string name="recording_set_2" translatable="false">6</string>
-    <string name="recording_J1" translatable="false">1</string>
-    <string name="recording_J2" translatable="false">2</string>
     <string name="statistiques_générales">Statistiques générales</string>
     <string name="statistiques_durée">Durée</string>
     <string name="statistiques_winning_points">Points gagnés</string>
     <string name="statistiques_service">Statistiques de service</string>
     <string name="statistiques_1st">1ères balles</string>
-    <string name="statistiques_aces" translatable="false">Aces</string>
     <string name="statistiques_double">Doubles fautes</string>
     <string name="statistiques_break_saved">Balles de break sauvées</string>
     <string name="statistiques_1st_winning">Points gagnés sur 1ère balle</string>
@@ -68,15 +54,4 @@
     <string name="statistiques_winning">Points gagnants</string>
     <string name="statistiques_direct_fault">Fautes directes</string>
     <string name="statistiques_provo_fault">Fautes provoquées</string>
-    <string name="statistiques_empty_stats" translatable="false">-</string>
-    <string name="statistiques_joueur1" translatable="false">Joueur 1</string>
-    <string name="statistiques_joueur2" translatable="false">Joueur 2</string>
-    <string name="gmap_key" translatable="false">AIzaSyCTVDwLH-BoJ0-19Lh-zjp1S2bZ0j1P5FI</string>
-
-
-
-
-
-
-
 </resources>

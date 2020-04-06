@@ -4,80 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="631dp"
-        android:background="#5C91F9"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="99dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        tools:layout_editor_absoluteX="0dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="21dp"
-            android:layout_marginBottom="59dp"
-            android:contentDescription="@string/menu"
-            android:src="@drawable/menu_icon"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="334dp"
-            android:layout_marginRight="334dp"
-            android:layout_marginBottom="58dp"
-            android:text="@string/toolbar_accueil_ss_title_FR"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="631dp"
+            android:background="#5C91F9"
+            android:theme="@style/AppTheme.AppBarOverlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0">
 
-        <TextView
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="21dp"
+                android:layout_marginBottom="59dp"
+                android:contentDescription="@string/menu"
+                android:onClick="menu"
+                android:src="@drawable/menu_icon"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="334dp"
+                android:layout_marginRight="334dp"
+                android:layout_marginBottom="58dp"
+                android:text="@string/toolbar_accueil_ss_title"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="175dp"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="175dp"
+                android:layout_marginRight="175dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/toolbar_accueil_title"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="175dp"
-            android:layout_marginRight="175dp"
-            android:layout_marginBottom="15dp"
-            android:text="@string/toolbar_accueil_title_FR"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <include
         layout="@layout/content_main"
         android:layout_width="match_parent"
         android:layout_height="631dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="100dp" />
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintVertical_bias="0.006"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

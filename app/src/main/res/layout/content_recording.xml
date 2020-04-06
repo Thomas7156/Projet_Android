@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
+    tools:context=".RecordingActivity"
     tools:showIn="@layout/activity_recording">
 
     <ImageView
@@ -64,6 +64,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView22" />
 
     <ImageView
+        android:onClick="finish"
         android:id="@+id/imageView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:onClick="picture"
         android:id="@+id/imageView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -143,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="@string/recording_score_FR"
+        android:text="@string/recording_score"
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView13"
@@ -153,7 +155,7 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_service_FR"
+        android:text="@string/recording_service"
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView34"
@@ -163,7 +165,7 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_echange_FR"
+        android:text="@string/recording_echange"
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView22"
@@ -256,7 +258,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_1st_ball_FR"
+        android:text="@string/recording_1st_ball"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView34"
@@ -268,7 +270,7 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_2nd_ball_FR"
+        android:text="@string/recording_2nd_ball"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView30"
@@ -301,7 +303,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_double_FR"
+        android:text="@string/recording_double"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView29"
@@ -313,7 +315,7 @@
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_winning_point_FR"
+        android:text="@string/recording_winning_point"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView26"
@@ -325,7 +327,7 @@
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_winning_point_FR"
+        android:text="@string/recording_winning_point"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView22"
@@ -336,7 +338,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_direct_fault_FR"
+        android:text="@string/recording_direct_fault"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView19"
@@ -347,7 +349,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_direct_fault_FR"
+        android:text="@string/recording_direct_fault"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView23"
@@ -358,7 +360,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_provo_faute_FR"
+        android:text="@string/recording_provo_faute"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView15"
@@ -369,7 +371,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_provo_faute_FR"
+        android:text="@string/recording_provo_faute"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView15"
@@ -378,9 +380,10 @@
         app:layout_constraintTop_toTopOf="@+id/imageView21" />
 
     <TextView
+        android:onClick="picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_photo_FR"
+        android:text="@string/recording_photo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView17"
@@ -389,9 +392,10 @@
         app:layout_constraintTop_toTopOf="@+id/imageView19" />
 
     <TextView
+        android:onClick="finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recording_terminer_FR"
+        android:text="@string/recording_terminer"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView17"
