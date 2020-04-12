@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.Date;
+
 public class DataBaseSQLite extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "BDD.db";
@@ -26,13 +28,12 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     //Score
     private static final String COLUMS_First = "FirstSet";
     private static final String COLUMS_Second = "SecondSet";
-    private static final String COLUMS_Third = "ThirdSet";
-    private static final String COLUMS_Forth = "ForthSet";
-    private static final String COLUMS_Fifth = "FifthSet";
+    //private static final String COLUMS_Third = "ThirdSet";
+    //private static final String COLUMS_Forth = "ForthSet";
+    //private static final String COLUMS_Fifth = "FifthSet";
 
     //Stats
     private static final String COLUMS_Points = "PointsWin";
-    private static final String COLUMS_Sets = "SetsWin";
     private static final String COLUMS_FirstBall = "FirstBall";
     private static final String COLUMS_SecondBall = "SecondBall";
     private static final String COLUMS_Aces = "AcesPerformed";
@@ -70,15 +71,14 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_SCORE + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMS_First + "INTEGER,"
-                + COLUMS_Second + "INTEGER,"
-                + COLUMS_Third + "INTEGER,"
+                + COLUMS_Second + "INTEGER);");
+                /*+ COLUMS_Third + "INTEGER,"
                 + COLUMS_Forth + "INTEGER,"
-                + COLUMS_Fifth + "INTEGER);");
+                + COLUMS_Fifth + "INTEGER);");*/
 
         db.execSQL("CREATE TABLE " + TABLE_STATISTICS + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMS_Points + "INTEGER,"
-                + COLUMS_Sets + "INTEGER,"
                 + COLUMS_FirstBall + "INTEGER,"
                 + COLUMS_SecondBall + "INTEGER,"
                 + COLUMS_Aces + "INTEGER,"
@@ -119,12 +119,11 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addLocation(int id, double latitude, double longitude) {
+    public boolean addLocation(double latitude, double longitude) {
 
         database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMS_ID, id);
         contentValues.put(COLUMS_Latitude, latitude);
         contentValues.put(COLUMS_Longitude, longitude);
 
@@ -138,17 +137,16 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addScore(int id, int first, int second, int third, int forth, int fifth) {
+    public boolean addScore(int first, int second) {
 
         database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMS_ID, id);
         contentValues.put(COLUMS_First, first);
         contentValues.put(COLUMS_Second, second);
-        contentValues.put(COLUMS_Third, third);
-        contentValues.put(COLUMS_Forth, forth);
-        contentValues.put(COLUMS_Fifth, fifth);
+//        contentValues.put(COLUMS_Third, third);
+//        contentValues.put(COLUMS_Forth, forth);
+//        contentValues.put(COLUMS_Fifth, fifth);
 
         long result = database.insert(TABLE_SCORE, null, contentValues);
 
@@ -160,17 +158,15 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addStatistics(int id, int pointsWin, int setsWin, int aces, int firstBalls, int secondBalls, int directFouls, int doubleFaults) {
+    public boolean addStatistics(int pointsWin, int aces, int firstBalls, int secondBalls, int directFouls, int doubleFaults) {
 
         database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMS_ID, id);
         contentValues.put(COLUMS_Points, pointsWin);
         contentValues.put(COLUMS_FirstBall, firstBalls);
         contentValues.put(COLUMS_SecondBall, secondBalls);
         contentValues.put(COLUMS_Aces, aces);
-        contentValues.put(COLUMS_Sets, setsWin);
         contentValues.put(COLUMS_DirectFouls, directFouls);
         contentValues.put(COLUMS_DoubleFault, doubleFaults);
 
@@ -184,12 +180,11 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addPicture(int id, String path, int idMatch) {
+    public boolean addPicture(String path, int idMatch) {
 
         database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMS_ID, id);
         contentValues.put(COLUMS_Path, path);
         contentValues.put(COLUMS_IDMatch, idMatch);
 
@@ -203,12 +198,11 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addMatch(int id, String P1, String P2, String duration, String date, int location, int scoreP1, int scoreP2, int statsP1, int statsP2) {
+    public boolean addMatch(String P1, String P2, String duration, String date, int location, int scoreP1, int scoreP2, int statsP1, int statsP2) {
 
         database = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMS_ID, id);
         contentValues.put(COLUMS_P1, P1);
         contentValues.put(COLUMS_P2, P2);
         contentValues.put(COLUMS_Duration, duration);
@@ -300,5 +294,49 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery(countQuery, null);
 
         return cursor;
+    }
+
+    public int getIDLastLocation() {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_LOCATION + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        int id = cursor.getInt(0);
+
+        return id;
+    }
+
+    public int getIDLastStats() {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_STATISTICS + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        int id = cursor.getInt(0);
+
+        return id;
+    }
+
+    public int getIDLastScore() {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_SCORE + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        int id = cursor.getInt(0);
+
+        return id;
+    }
+
+    public int getIDLastMatch() {
+        database = this.getReadableDatabase();
+
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_MATCH + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        Cursor cursor = database.rawQuery(countQuery, null);
+
+        int id = cursor.getInt(0);
+
+        return id;
     }
 }

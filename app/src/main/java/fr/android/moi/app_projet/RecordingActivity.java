@@ -4,21 +4,31 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class RecordingActivity extends AppCompatActivity {
     private static final int TAKE_PICTURE = 1;
     private static final int CHOOSE_PICTURE = 2;
     private String photoLocation = "";
+
+    Chronometer chrono;
+    String date;
 
     DataBaseSQLite dataBaseSQLite;
 
@@ -39,6 +49,10 @@ public class RecordingActivity extends AppCompatActivity {
     public TextView player2;
     boolean set1;
 
+    int scoreSet1P1;
+    int scoreSet1P2;
+    int scoreSet2P1;
+    int scoreSet2P2;
     int firstBallP1cpt;
     int firstBallP2cpt;
     int secondBallP1;
@@ -79,8 +93,18 @@ public class RecordingActivity extends AppCompatActivity {
         //this.set3P2 = (TextView) findViewById(R.id.textView23);
         this.PlayerEngaging = (TextView) findViewById(R.id.textView13);
 
+        chrono = new Chronometer(this);
+
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        date = df.format(currentTime);
+
         serviceP1 = true;
         set1 = true;
+        scoreSet1P1 = 0;
+        scoreSet1P2 = 0;
+        scoreSet2P1 = 0;
+        scoreSet2P2 = 0;
         firstBallP1cpt = 0;
         firstBallP2cpt = 0;
         secondBallP1 = 0;
@@ -96,11 +120,11 @@ public class RecordingActivity extends AppCompatActivity {
         pointsWinP1cpt = 0;
         pointsWinP2cpt = 0;
         Bundle before = getIntent().getExtras();
-        player_1_name="";
+        player_1_name = "";
         player_2_name = "";
         latitude = 0.0;
         longitude = 0.0;
-        if(before != null) {
+        if (before != null) {
             player_1_name = before.getString("player1");
             player_2_name = before.getString("player2");
             latitude = Double.valueOf(before.getString("latitude"));
@@ -108,7 +132,20 @@ public class RecordingActivity extends AppCompatActivity {
             player1.setText(player_1_name);
             player2.setText(player_2_name);
         }
+
         dataBaseSQLite = new DataBaseSQLite(this);
+
+        new startChrono().execute();
+    }
+
+    private class startChrono extends AsyncTask<String, String, Integer> {
+        protected Integer doInBackground(String... rslt) {
+
+            chrono.start();
+            chrono.setBase(SystemClock.elapsedRealtime());
+
+            return 0;
+        }
     }
 
     @Override
@@ -147,8 +184,8 @@ public class RecordingActivity extends AppCompatActivity {
         }
         return (true);
     }
-    public boolean picture_add(View view)
-    {
+
+    public boolean picture_add(View view) {
         //Picture from gallery
         Intent Gallerychoose = new Intent(Intent.ACTION_PICK);
         Gallerychoose.setType("image/*");
@@ -159,24 +196,49 @@ public class RecordingActivity extends AppCompatActivity {
         startActivityForResult(Gallerychoose, CHOOSE_PICTURE);
         return (true);
     }
-    public boolean finish(View view)
-    {
+
+    public boolean finish(View view) {
+        //Stop and get the duration
+        long tmp = chrono.getBase();
+        chrono.stop();
+        String duration = String.valueOf(SystemClock.elapsedRealtime() - tmp);
+
         //*************SAVE FUNCION INTO DATABASE+SQQLITE*************//
 
         //Creation location in bdd
+        dataBaseSQLite.addLocation(latitude, longitude);
+        int idLocationMatch = dataBaseSQLite.getIDLastLocation();
 
         //Creation Stats each player in bdd
+        dataBaseSQLite.addStatistics(pointsWinP1cpt, aceP1cpt, firstBallP1cpt, secondBallP1, directFaultP1cpt, doubleFaultP1);
+        int idStatsP1 = dataBaseSQLite.getIDLastStats();
+
+        dataBaseSQLite.addStatistics(pointsWinP2cpt, aceP2cpt, firstBallP2cpt, secondBallP2, directFaultP2cpt, doubleFaultP2);
+        int idStatsP2 = dataBaseSQLite.getIDLastStats();
 
         //Creation score each player in bdd
+        dataBaseSQLite.addScore(scoreSet1P1, scoreSet2P1);
+        int idScoreP1 = dataBaseSQLite.getIDLastScore();
+
+        dataBaseSQLite.addScore(scoreSet1P2, scoreSet2P2);
+        int idScoreP2 = dataBaseSQLite.getIDLastScore();
 
         //Creation new match in bdd
+        dataBaseSQLite.addMatch(player_1_name, player_2_name, duration, date, idLocationMatch, idScoreP1, idScoreP2, idStatsP1, idStatsP2);
+        int idMatch = dataBaseSQLite.getIDLastMatch();
 
+        //Add pictures of the match
+        //FAIRE LA BOUCLE FOR QUI PARCOURE TOUTES LES PHOTOS ET LES AJOUTER UNE PAR UNE
+        for(){
+            dataBaseSQLite.addPicture( , idMatch);
+        }
 
         //Returning Home page
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return (true);
     }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
@@ -365,26 +427,22 @@ public class RecordingActivity extends AppCompatActivity {
             this.pointsP2.setText("0");
 
             if (set1 == true) {
-                int scoreP1 = Integer.parseInt(String.valueOf(set1P1.getText()));
-                scoreP1 += 1;
-                this.set1P1.setText(scoreP1);
+                scoreSet1P1 += 1;
+                this.set1P1.setText(scoreSet1P1);
             } else {
-                int scoreP1 = Integer.parseInt(String.valueOf(set2P1.getText()));
-                scoreP1 += 1;
-                this.set2P1.setText(scoreP1);
+                scoreSet2P1 += 1;
+                this.set2P1.setText(scoreSet2P1);
             }
         } else if (pointsP2cpt > 45 && pointsP1cpt <= 45) {
             this.pointsP1.setText("0");
             this.pointsP2.setText("0");
 
             if (set1 == true) {
-                int scoreP2 = Integer.parseInt(String.valueOf(set1P2.getText()));
-                scoreP2 += 1;
-                this.set1P2.setText(scoreP2);
+                scoreSet1P2 += 1;
+                this.set1P2.setText(scoreSet1P2);
             } else {
-                int scoreP2 = Integer.parseInt(String.valueOf(set2P2.getText()));
-                scoreP2 += 1;
-                this.set2P2.setText(scoreP2);
+                scoreSet2P2 += 1;
+                this.set2P2.setText(scoreSet2P2);
             }
         }
     }
