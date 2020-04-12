@@ -34,8 +34,10 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     private static final String COLUMS_Points = "PointsWin";
     private static final String COLUMS_Sets = "SetsWin";
     private static final String COLUMS_FirstBall = "FirstBall";
+    private static final String COLUMS_SecondBall = "SecondBall";
     private static final String COLUMS_Aces = "AcesPerformed";
     private static final String COLUMS_DirectFouls = "DirectFouls";
+    private static final String COLUMS_DoubleFault = "DoubleFault";
 
     //Matchs
     private static final String COLUMS_P1 = "Player1";
@@ -78,7 +80,9 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 + COLUMS_Points + "INTEGER,"
                 + COLUMS_Sets + "INTEGER,"
                 + COLUMS_FirstBall + "INTEGER,"
+                + COLUMS_SecondBall + "INTEGER,"
                 + COLUMS_Aces + "INTEGER,"
+                + COLUMS_DoubleFault + "INTEGER,"
                 + COLUMS_DirectFouls + "INTEGER);");
 
         db.execSQL("CREATE TABLE " + TABLE_MATCH + "("
@@ -156,7 +160,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addStatistics(int id, int pointsWin, int setsWin, int aces, int firstBalls, int directFouls) {
+    public boolean addStatistics(int id, int pointsWin, int setsWin, int aces, int firstBalls, int secondBalls, int directFouls, int doubleFaults) {
 
         database = this.getWritableDatabase();
 
@@ -164,9 +168,11 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         contentValues.put(COLUMS_ID, id);
         contentValues.put(COLUMS_Points, pointsWin);
         contentValues.put(COLUMS_FirstBall, firstBalls);
+        contentValues.put(COLUMS_SecondBall, secondBalls);
         contentValues.put(COLUMS_Aces, aces);
         contentValues.put(COLUMS_Sets, setsWin);
         contentValues.put(COLUMS_DirectFouls, directFouls);
+        contentValues.put(COLUMS_DoubleFault, doubleFaults);
 
         long result = database.insert(TABLE_STATISTICS, null, contentValues);
 
@@ -197,7 +203,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public boolean addMatch(int id,String P1, String P2, String duration, String date, int location, int scoreP1, int scoreP2, int statsP1, int statsP2) {
+    public boolean addMatch(int id, String P1, String P2, String duration, String date, int location, int scoreP1, int scoreP2, int statsP1, int statsP2) {
 
         database = this.getWritableDatabase();
 
