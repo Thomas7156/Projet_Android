@@ -6,7 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Date;
+/** Commande pour la suppression on cascade
+ *Need to go in the SQLiteOpenHelper class and enable the constraint foreign key
+ *In the method onConfigure(), add this line : db.setForeignKeyConstraintsEnabled(true);
+ */
 
 public class DataBaseSQLite extends SQLiteOpenHelper {
 
