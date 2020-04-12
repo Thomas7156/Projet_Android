@@ -21,9 +21,11 @@ public class RecordingActivity extends AppCompatActivity {
     private String photoLocation = "";
 
     DataBaseSQLite dataBaseSQLite;
+
     public ImageView checkboxP1;
     public ImageView checkboxP2;
     boolean serviceP1;
+    public TextView PlayerEngaging;
 
     public TextView pointsP1;
     public TextView pointsP2;
@@ -75,6 +77,7 @@ public class RecordingActivity extends AppCompatActivity {
 
         //this.set3P1 = (TextView) findViewById(R.id.textView23);
         //this.set3P2 = (TextView) findViewById(R.id.textView23);
+        this.PlayerEngaging = (TextView) findViewById(R.id.textView13);
 
         serviceP1 = true;
         set1 = true;
@@ -158,7 +161,18 @@ public class RecordingActivity extends AppCompatActivity {
     }
     public boolean finish(View view)
     {
-        //SAVE FUNCION INTO DATABASE+SQQLITE
+        //*************SAVE FUNCION INTO DATABASE+SQQLITE*************//
+
+        //Creation location in bdd
+
+        //Creation Stats each player in bdd
+
+        //Creation score each player in bdd
+
+        //Creation new match in bdd
+
+
+        //Returning Home page
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         return (true);
@@ -204,6 +218,7 @@ public class RecordingActivity extends AppCompatActivity {
                     checkboxP1.setImageResource(R.drawable.red_box);
                     checkboxP2.setImageResource(R.drawable.empty_red_box);
                     serviceP1 = true;
+                    this.PlayerEngaging.setText("Service : Joueur 1");
                 }
                 break;
 
@@ -212,6 +227,7 @@ public class RecordingActivity extends AppCompatActivity {
                     checkboxP1.setImageResource(R.drawable.empty_red_box);
                     checkboxP2.setImageResource(R.drawable.red_box);
                     serviceP1 = false;
+                    this.PlayerEngaging.setText("Service : Joueur 2");
                 }
                 break;
 
