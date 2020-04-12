@@ -191,16 +191,14 @@ public class MainActivity extends AppCompatActivity {
         Log.e("verif", "OKKKK");
     }
 
-    public void LoadLastMatchs(){
+    public void LoadLastMatchs() {
         Cursor elem = dataBaseSQLite.getAllMatchs();
         elem.moveToFirst();
 
-        for(int i = 0; i < elem.getCount(); i++){
-            //Seulement les 5 premiers matchs
-            if(i < 5) {
-                final Match new_match = new Match(elem);
-                AllMatchs.add(new_match);
-            }
+        for (int i = 0; i < elem.getCount(); i++) {
+            final Match new_match = new Match(elem);
+
+            AllMatchs.add(new_match);
 
             elem.moveToNext();
         }
@@ -281,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
         public int p1_points, p1_firstball, p1_secondball, p1_aces, p1_doubleFaults, p1_directfouls;
         public int p2_points, p2_firstball, p2_secondball, p2_aces, p2_doubleFaults, p2_directfouls;
 
-        public Match(Cursor elem){
+        public Match(Cursor elem) {
             id = elem.getInt(0);
             p1 = elem.getString(1);
             p2 = elem.getString(2);
@@ -306,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
             p1_secondball = statsP1.getInt(3);
             p1_aces = statsP1.getInt(4);
             p1_doubleFaults = statsP1.getInt(5);
-            p1_directfouls = statsP1.getInt(6)
+            p1_directfouls = statsP1.getInt(6);
 
             Cursor statsP2 = dataBaseSQLite.getStatisticsByID(elem.getInt(9));
             p2_points = statsP2.getInt(1);
@@ -314,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
             p2_secondball = statsP2.getInt(3);
             p2_aces = statsP2.getInt(4);
             p2_doubleFaults = statsP2.getInt(5);
-            p2_directfouls = statsP2.getInt(6)
+            p2_directfouls = statsP2.getInt(6);
         }
     }
 
