@@ -1,7 +1,11 @@
 package fr.android.moi.app_projet;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +15,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RecordingActivity extends AppCompatActivity {
+    private static final int TAKE_PICTURE = 1;
+    private static final int CHOOSE_PICTURE = 2;
+    private String photoLocation = "";
+
     DataBaseSQLite dataBaseSQLite;
     public ImageView checkboxP1;
     public ImageView checkboxP2;
@@ -108,14 +116,48 @@ public class RecordingActivity extends AppCompatActivity {
 
     public boolean picture(View view) {
         //PHOTO FUNCTION
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, TAKE_PICTURE);
+        }
         return (true);
     }
-
-    public boolean finish(View view) {
-        //SAVE FUNCION INTO DATABASE+SQLITE
-        Intent intent = new Intent(this, MainActivity.class);
+    public boolean picture_add(View view)
+    {
+        //Picture from gallery
+        Intent Gallerychoose = new Intent(Intent.ACTION_PICK);
+        Gallerychoose.setType("image/*");
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        //EXTRA
+        Gallerychoose.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+        //STATT ACTIVITY
+        startActivityForResult(Gallerychoose, CHOOSE_PICTURE);
+        return (true);
+    }
+    public boolean finish(View view)
+    {
+        //SAVE FUNCION INTO DATABASE+SQQLITE
+        Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         return (true);
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case CHOOSE_PICTURE:
+                    //data.getData returns the content URI for the selected Image
+                    Uri selectedImage = data.getData();
+                    photoLocation = selectedImage.toString();
+                    //addPicture
+                    break;
+
+                case TAKE_PICTURE:
+                    photoLocation = "camera";
+                    //addPicture
+                    break;
+            }
+        }
     }
 
     public void myClickHandler(View view) {

@@ -39,6 +39,7 @@
     <string name="recording_direct_fault">Faute directe</string>
     <string name="recording_provo_faute">Faute provo</string>
     <string name="recording_photo">Prendre une photo</string>
+    <string name="recording_ajouter_photo">Ajouter une photo</string>
     <string name="recording_terminer">Terminer</string>
 
     <string name="recording_ace" translatable="false">ACE</string>
