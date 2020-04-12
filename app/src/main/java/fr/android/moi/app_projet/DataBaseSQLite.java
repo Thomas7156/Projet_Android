@@ -100,7 +100,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_PICTURES + " ( "
                 + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMS_Path + " INTEGER, "
+                + COLUMS_Path + " TEXT, "
                 + COLUMS_IDMatch + " INTEGER,"
                 + "FOREIGN KEY (" + COLUMS_IDMatch + ") REFERENCES " + TABLE_MATCH + "(" + COLUMS_ID + "));");
     }
