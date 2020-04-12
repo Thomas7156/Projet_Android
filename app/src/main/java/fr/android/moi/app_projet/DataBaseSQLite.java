@@ -68,8 +68,8 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_LOCATION + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMS_Longitude + "DOUBLE,"
-                + COLUMS_Latitude + "DOUBLE);");
+                + COLUMS_Latitude + "DOUBLE,"
+                + COLUMS_Longitude + "DOUBLE);");
 
         db.execSQL("CREATE TABLE " + TABLE_SCORE + "("
                 + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
