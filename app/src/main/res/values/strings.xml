@@ -25,7 +25,7 @@
     <string name="toolbar_enregistrement_ss_title">Match en cours</string>
     <string name="toolbar_enregistrement_title">Enregistrement d\'un match</string>
     <string name="toolbar_stats_ss_title">Statistiques</string>
-    <string name="toolbar_stats_title">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM</string>
+    <string name="toolbar_stats_title" translatable="false">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM LAT:LONG</string>
     <string name="nouveau_nom_joueur_1">Nom Joueur 1</string>
     <string name="nouveau_nom_joueur_2">Nom Joueur 2</string>
     <string name="nouveau_locate">Localisation</string>
@@ -72,6 +72,7 @@
     <string name="statistiques_empty_stats" translatable="false">-</string>
     <string name="statistiques_joueur1" translatable="false">Joueur 1</string>
     <string name="statistiques_joueur2" translatable="false">Joueur 2</string>
+    <string name ="statistiques_pictures">Voir les photos</string>
     <string name="gmap_key" translatable="false">AIzaSyCTVDwLH-BoJ0-19Lh-zjp1S2bZ0j1P5FI</string>
 
 
