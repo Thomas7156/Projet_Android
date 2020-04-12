@@ -209,7 +209,6 @@ public class NewActivity extends AppCompatActivity implements LocationListener {
             String player_1_name = player1.getText().toString();
             String player_2_name = player2.getText().toString();
             String localisation = latEtLong.getText().toString();
-            intent.putExtra("localisation", localisation);
             intent.putExtra("player1", player_1_name);
             intent.putExtra("player2", player_2_name);
             intent.putExtra("latitude", latitude);
