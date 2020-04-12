@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +35,8 @@ public class RecordingActivity extends AppCompatActivity {
     public TextView set2P2;
     public TextView set3P1;
     public TextView set3P2;
+    public TextView player1;
+    public TextView player2;
     boolean set1;
 
     int firstBallP1cpt;
@@ -50,6 +53,10 @@ public class RecordingActivity extends AppCompatActivity {
     int provoFaultP2cpt;
     int pointsWinP1cpt;
     int pointsWinP2cpt;
+    private String player_1_name;
+    private String player_2_name;
+    private Double latitude;
+    private Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,9 @@ public class RecordingActivity extends AppCompatActivity {
         this.set1P2 = (TextView) findViewById(R.id.textView22);
         this.set2P1 = (TextView) findViewById(R.id.textView21);
         this.set2P2 = (TextView) findViewById(R.id.textView23);
+        this.player1 = (TextView) findViewById(R.id.recording_joueur1);
+        this.player2 = (TextView) findViewById(R.id.recording_joueur2);
+
         //this.set3P1 = (TextView) findViewById(R.id.textView23);
         //this.set3P2 = (TextView) findViewById(R.id.textView23);
         this.PlayerEngaging = (TextView) findViewById(R.id.textView13);
@@ -85,7 +95,19 @@ public class RecordingActivity extends AppCompatActivity {
         provoFaultP2cpt = 0;
         pointsWinP1cpt = 0;
         pointsWinP2cpt = 0;
-
+        Bundle before = getIntent().getExtras();
+        player_1_name="";
+        player_2_name = "";
+        latitude = 0.0;
+        longitude = 0.0;
+        if(before != null) {
+            player_1_name = before.getString("player1");
+            player_2_name = before.getString("player2");
+            latitude = Double.valueOf(before.getString("latitude"));
+            longitude = Double.valueOf(before.getString("longitude"));
+            player1.setText(player_1_name);
+            player2.setText(player_2_name);
+        }
         dataBaseSQLite = new DataBaseSQLite(this);
     }
 
@@ -162,12 +184,14 @@ public class RecordingActivity extends AppCompatActivity {
                 case CHOOSE_PICTURE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
+                    System.out.println(selectedImage);
                     photoLocation = selectedImage.toString();
                     //addPicture
                     break;
 
                 case TAKE_PICTURE:
-                    photoLocation = "camera";
+                    Uri takeImage = data.getData();
+                    System.out.println(takeImage);
                     //addPicture
                     break;
             }
