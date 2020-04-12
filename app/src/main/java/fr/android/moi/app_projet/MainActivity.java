@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         new_match.p2_secondball = 2;
         new_match.p2_aces = 2;
         new_match.p2_directfouls = 2;
+        new_match.p1_doublefault = 2;
+        new_match.p2_doublefault = 2;
+
         //Ajouter les infos
         // ex : new_match.id = id_database;
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.layout_content_main);
@@ -235,27 +238,29 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("p1_firstball", new_match.p1_firstball);
         intent.putExtra("p1_secondball", new_match.p1_secondball);
         intent.putExtra("p1_aces", new_match.p1_aces);
+        intent.putExtra("p1_double_fault", new_match.p1_doublefault);
         intent.putExtra("p1_directfouls", new_match.p1_directfouls);
         intent.putExtra("p2_points", new_match.p2_points);
         intent.putExtra("p2_sets", new_match.p2_sets);
         intent.putExtra("p2_firstball", new_match.p2_firstball);
         intent.putExtra("p2_secondball", new_match.p2_secondball);
         intent.putExtra("p2_aces", new_match.p2_aces);
+        intent.putExtra("p2_double_fault", new_match.p2_doublefault);
         intent.putExtra("p2_directfouls", new_match.p2_directfouls);
         startActivity(intent);
         return (true);
     }
     public class Match
     {
-        private int id;
-        private String p1,p2;
-        private int duration;
-        private String date;
-        private double latitude, longitude;
-        private int p1_first, p1_second, p1_third, p1_forth, p1_fifth;
-        private int p2_first, p2_second, p2_third, p2_forth, p2_fifth;
-        private int p1_points, p1_sets, p1_firstball, p1_secondball, p1_aces, p1_directfouls;
-        private int p2_points, p2_sets, p2_firstball, p2_secondball, p2_aces, p2_directfouls;
+         int id;
+         String p1,p2;
+         int duration;
+         String date;
+         double latitude, longitude;
+         int p1_first, p1_second, p1_third, p1_forth, p1_fifth;
+         int p2_first, p2_second, p2_third, p2_forth, p2_fifth;
+         int p1_points, p1_sets, p1_firstball, p1_secondball, p1_aces, p1_doublefault, p1_directfouls;
+         int p2_points, p2_sets, p2_firstball, p2_secondball, p2_aces, p2_doublefault,p2_directfouls;
     }
 
     public boolean supprimer_match(Match deleted_match) {

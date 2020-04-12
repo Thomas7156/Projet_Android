@@ -43,11 +43,12 @@
     <string name="statistiques_durée">Duration</string>
     <string name="statistiques_winning_points">Earned points</string>
     <string name="statistiques_1st">1st balls</string>
+    <string name="toolbar_pictures_ss_title">Pictures</string>
     <string name="statistiques_1st_winning">Points earned on first ball</string>
     <string name="statistiques_2st_wining">Points earned on opponent\'s 2nd ball</string>
     <string name="statistiques_break_convert">Converted break balls</string>
     <string name="statistiques_break_saved">Saved bread balls</string>
-    <string name="statistiques_direct_fault">Direct faults</string>
+    <string name="statistiques_direct_fault">Faults</string>
     <string name="statistiques_double">Double faults</string>
     <string name="statistiques_pointss">Points statistics</string>
     <string name="statistiques_provo_fault">Misconducts</string>

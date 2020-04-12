@@ -52,7 +52,8 @@
     <string name="statistiques_2st_wining">Points gagnés sur     2ème balle adversaire</string>
     <string name="statistiques_pointss">Statistiques des points</string>
     <string name="statistiques_winning">Points gagnants</string>
-    <string name="statistiques_direct_fault">Fautes directes</string>
+    <string name="toolbar_pictures_ss_title">Photographies</string>
+    <string name="statistiques_direct_fault">Fautes</string>
     <string name="statistiques_provo_fault">Fautes provoquées</string>
     <string name="recording_ajouter_photo">Ajouter une photo</string>
     <string name="statistiques_pictures">Voir les photos</string>

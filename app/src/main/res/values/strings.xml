@@ -26,6 +26,7 @@
     <string name="toolbar_enregistrement_title">Enregistrement d\'un match</string>
     <string name="toolbar_stats_ss_title">Statistiques</string>
     <string name="toolbar_stats_title" translatable="false">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM LAT:LONG</string>
+    <string name="toolbar_pictures_ss_title">Photographies</string>
     <string name="nouveau_nom_joueur_1">Nom Joueur 1</string>
     <string name="nouveau_nom_joueur_2">Nom Joueur 2</string>
     <string name="nouveau_locate">Localisation</string>
@@ -67,7 +68,7 @@
     <string name="statistiques_2st_wining">Points gagnés sur     2ème balle adversaire</string>
     <string name="statistiques_pointss">Statistiques des points</string>
     <string name="statistiques_winning">Points gagnants</string>
-    <string name="statistiques_direct_fault">Fautes directes</string>
+    <string name="statistiques_direct_fault">Fautes</string>
     <string name="statistiques_provo_fault">Fautes provoquées</string>
     <string name="statistiques_empty_stats" translatable="false">-</string>
     <string name="statistiques_joueur1" translatable="false">Joueur 1</string>
