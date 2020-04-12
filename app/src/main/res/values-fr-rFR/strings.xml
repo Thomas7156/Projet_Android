@@ -55,4 +55,5 @@
     <string name="statistiques_direct_fault">Fautes directes</string>
     <string name="statistiques_provo_fault">Fautes provoquées</string>
     <string name="recording_ajouter_photo">Ajouter une photo</string>
+    <string name="statistiques_pictures">Voir les photos</string>
 </resources>
