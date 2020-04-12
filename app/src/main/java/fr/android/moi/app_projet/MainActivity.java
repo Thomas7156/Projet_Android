@@ -1,24 +1,20 @@
 package fr.android.moi.app_projet;
 
 import android.content.Intent;
-import android.media.Image;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,9 +40,39 @@ public class MainActivity extends AppCompatActivity {
         //Ex : new_match_id : match_database_id;
         //Pour chaque match
         final Match new_match = new Match();
+        new_match.id=1;
+        new_match.p1="Tom";
+        new_match.p2="Thomas";
+        new_match.duration = 2;
+        new_match.date = "30/04/2019";
+        new_match.latitude = 4000.2;
+        new_match.longitude = 200.3;
+        new_match.p1_first = 2;
+        new_match.p1_second = 2;
+        new_match.p1_third = 2;
+        new_match.p1_forth = 2;
+        new_match.p1_fifth = 2;
+        new_match.p2_first = 2;
+        new_match.p2_second = 2;
+        new_match.p2_third = 2;
+        new_match.p2_forth = 2;
+        new_match.p2_fifth = 2;
+        new_match.p1_points = 2;
+        new_match.p1_sets = 2;
+        new_match.p1_firstball = 2;
+        new_match.p1_secondball = 2;
+        new_match.p1_aces = 2;
+        new_match.p1_directfouls = 2;
+        new_match.p2_points = 2;
+        new_match.p2_sets = 2;
+        new_match.p2_firstball = 2;
+        new_match.p2_secondball = 2;
+        new_match.p2_aces = 2;
+        new_match.p2_directfouls = 2;
         //Ajouter les infos
         // ex : new_match.id = id_database;
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.layout_content_main);
+        Log.e("VERIF LAYOUT", layout.toString());
         ImageView rect = new ImageView(this);
         rect.setImageResource(R.drawable.match_precedent_contour);
         //On définit l'affichage du rect
@@ -60,27 +86,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //LAYOUT POUR LE RECTANGLE
-        ConstraintLayout.LayoutParams prams_rect = new ConstraintLayout.LayoutParams(rect.getWidth(), rect.getHeight());
-        ConstraintLayout layout_rect = new ConstraintLayout(this);
-        layout_rect.setLayoutParams(prams_rect);
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(layout_rect);
-        //LAYOUT SUR LES COTES
-        constraintSet.connect(rect.getId(), ConstraintSet.START, layout.getId(), ConstraintSet.START, 0);
-        constraintSet.connect(rect.getId(), ConstraintSet.END, layout.getId(), ConstraintSet.END, 0);
+        ConstraintLayout.LayoutParams prams_rect = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
         //LAYOUT : DERNIER ELEMENT
-        constraintSet.connect(rect.getId(), ConstraintSet.TOP, layout.getId(), ConstraintSet.TOP, 0);
-        constraintSet.setHorizontalBias(rect.getId(), (float) 0.498);
-        constraintSet.applyTo(layout_rect);
+        prams_rect.startToStart = layout.getId();
+        prams_rect.endToEnd = layout.getId();
+        //dernier élément ajouté (utilisé buffer_id_rect
+        prams_rect.topToBottom =  R.id.test;
+        prams_rect.horizontalBias = (float) 0.498;
+        layout.addView(rect,prams_rect);
         buffer_id_rect = rect.getId();
-        //TEXT VIEW PLAYERS
-        TextView players = new TextView(this);
-        players.setText(new_match.p1 + " VS " + new_match.p2);
-        //LAYOUT POUR LE TEXT VIEW PLAYERS
-        ///TEXT VIEW INFOS
-        TextView infos = new TextView(MainActivity.this);
-        infos.setText(new_match.date + " " + new_match.duration + " " + new_match.latitude + ", " + new_match.longitude);
-        //LAYOUT POUR LE TEXT VIEW INFOS
         ///DELETE BOUTON ADD
         ImageView delete = new ImageView(this);
         delete.setImageResource(R.drawable.accueil_delete_match);
@@ -96,20 +110,70 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //LAYOUT POUR LE DELETE BUTTON
-        ConstraintLayout.LayoutParams prams_delete = new ConstraintLayout.LayoutParams(delete.getWidth(), delete.getHeight());
-        ConstraintLayout layout_delete = new ConstraintLayout(this);
-        layout_delete.setLayoutParams(prams_delete);
-        ConstraintSet constraintSet_delete = new ConstraintSet();
-        constraintSet.clone(layout_delete);
+        ConstraintLayout.LayoutParams prams_delete = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
         //LAYOUT SUR LES COTES
-        constraintSet.connect(delete.getId(), ConstraintSet.START, rect.getId(), ConstraintSet.START, 312);
-        constraintSet.connect(delete.getId(), ConstraintSet.END, rect.getId(), ConstraintSet.END, 48);
+
         //LAYOUT : DERNIER ELEMENT
-        constraintSet.connect(delete.getId(), ConstraintSet.TOP, rect.getId(), ConstraintSet.TOP, 54);
-        constraintSet.connect(delete.getId(), ConstraintSet.BOTTOM, rect.getId(), ConstraintSet.BOTTOM, 66);
-        constraintSet.applyTo(layout_delete);
+        float density = this.getResources().getDisplayMetrics().density;
+        prams_delete.startToStart=buffer_id_rect;
+        prams_delete.endToEnd = buffer_id_rect;
+        prams_delete.topToTop = buffer_id_rect;
+        prams_delete.bottomToBottom = buffer_id_rect;
+        prams_delete.setMarginStart((int)( 312 * density));
+        prams_delete.setMarginEnd((int) (48 * density));
+        prams_delete.leftMargin = (int)( 312 * density);
+        prams_delete.rightMargin = (int) (int)( 48 * density);
+        prams_delete.bottomMargin = (int)( 66 * density);
+        prams_delete.topMargin = (int)( 54 * density);
+        layout.addView(delete,prams_delete);
         buffer_id_delete = delete.getId();
+        //TEXT VIEW PLAYERS
+        TextView players = new TextView(this);
+        players.setText(new_match.p1 +" VS "+new_match.p2);
+        players.setId(View.generateViewId());
+        players.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+        players.setTextColor(Color.parseColor("#30344B"));
+        players.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                //Fonction pour ajouter un match
+                previous_game(view, new_match);
+            }
+        });
+        //LAYOUT POUR LE TEXT VIEW PLAYERS
+        ConstraintLayout.LayoutParams prams_players = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        //LAYOUT SUR LES COTES
+        //LAYOUT : DERNIER ELEMENT
+        prams_players.startToStart=buffer_id_rect;
+        prams_players.setMarginStart((int)( 53 * density));
+        prams_players.topMargin = (int)( 52 * density);
+        prams_players.topToTop=buffer_id_rect;
+        layout.addView(players,prams_players);
+        buffer_id_text_players = players.getId();
+        ///TEXT VIEW INFOS
+        TextView infos = new TextView(MainActivity.this);
+        infos.setText(new_match.date + " " + new_match.duration + " min - " + new_match.latitude +", " + new_match.longitude);
+        infos.setTextColor(Color.parseColor("#707070"));
+        infos.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
+        //LAYOUT POUR LE TEXT VIEW INFOS
+        ConstraintLayout.LayoutParams prams_infos = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT,ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        //LAYOUT SUR LES COTES
+        //LAYOUT : DERNIER ELEMENT
+        prams_infos.horizontalBias = (float) 0.0;
+        prams_infos.verticalBias = (float) 0.0;
+        prams_infos.bottomToBottom=buffer_id_rect;
+        prams_infos.topToBottom=buffer_id_text_players;
+        prams_infos.topMargin = (int)( 8 * density);
+        prams_infos.startToStart = buffer_id_text_players;
+        layout.addView(infos,prams_infos);
+        getBuffer_id_text_infos = infos.getId();
+//        layout.addView(players);
+//        layout.addView(delete);
+  //      layout.addView(layout_players);
+    //    layout.addView(layout_infos);
         nombre_match++;
+        Log.e("verif","OKKKK");
     }
 
     @Override
@@ -181,17 +245,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         return (true);
     }
-
-    public class Match {
-        public int id;
-        public String p1, p2;
-        public int duration;
-        public String date;
-        public double latitude, longitude;
-        public int p1_first, p1_second, p1_third, p1_forth, p1_fifth;
-        public int p2_first, p2_second, p2_third, p2_forth, p2_fifth;
-        public int p1_points, p1_sets, p1_firstball, p1_secondball, p1_aces, p1_directfouls;
-        public int p2_points, p2_sets, p2_firstball, p2_secondball, p2_aces, p2_directfouls;
+    public class Match
+    {
+        private int id;
+        private String p1,p2;
+        private int duration;
+        private String date;
+        private double latitude, longitude;
+        private int p1_first, p1_second, p1_third, p1_forth, p1_fifth;
+        private int p2_first, p2_second, p2_third, p2_forth, p2_fifth;
+        private int p1_points, p1_sets, p1_firstball, p1_secondball, p1_aces, p1_directfouls;
+        private int p2_points, p2_sets, p2_firstball, p2_secondball, p2_aces, p2_directfouls;
     }
 
     public boolean supprimer_match(Match deleted_match) {
@@ -200,6 +264,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Recharger le layout
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        return (true);
+    }
+    //test
+    public boolean previous_game(View view)
+    {
+        Intent intent = new Intent(this,StatistiquesActivity.class);
         startActivity(intent);
         return (true);
     }
