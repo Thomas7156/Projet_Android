@@ -19,18 +19,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class RecordingActivity extends AppCompatActivity {
     private static final int TAKE_PICTURE = 1;
     private static final int CHOOSE_PICTURE = 2;
-    private String photoLocation = "";
+    public ArrayList<String> photoLocation = new ArrayList<>();
 
-    Chronometer chrono;
-    String date;
+    public Chronometer chrono;
+    public String date;
 
-    DataBaseSQLite dataBaseSQLite;
+    public DataBaseSQLite dataBaseSQLite;
 
     public ImageView checkboxP1;
     public ImageView checkboxP2;
@@ -67,10 +68,10 @@ public class RecordingActivity extends AppCompatActivity {
     int provoFaultP2cpt;
     int pointsWinP1cpt;
     int pointsWinP2cpt;
-    private String player_1_name;
-    private String player_2_name;
-    private Double latitude;
-    private Double longitude;
+    public String player_1_name;
+    public String player_2_name;
+    public Double latitude;
+    public Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,45 +199,54 @@ public class RecordingActivity extends AppCompatActivity {
     }
 
     public boolean finish(View view) {
-        //Stop and get the duration
-        long tmp = chrono.getBase();
-        chrono.stop();
-        String duration = String.valueOf(SystemClock.elapsedRealtime() - tmp);
-
-        //*************SAVE FUNCION INTO DATABASE+SQQLITE*************//
-
-        //Creation location in bdd
-        dataBaseSQLite.addLocation(latitude, longitude);
-        int idLocationMatch = dataBaseSQLite.getIDLastLocation();
-
-        //Creation Stats each player in bdd
-        dataBaseSQLite.addStatistics(pointsWinP1cpt, aceP1cpt, firstBallP1cpt, secondBallP1, directFaultP1cpt, doubleFaultP1);
-        int idStatsP1 = dataBaseSQLite.getIDLastStats();
-
-        dataBaseSQLite.addStatistics(pointsWinP2cpt, aceP2cpt, firstBallP2cpt, secondBallP2, directFaultP2cpt, doubleFaultP2);
-        int idStatsP2 = dataBaseSQLite.getIDLastStats();
-
-        //Creation score each player in bdd
-        dataBaseSQLite.addScore(scoreSet1P1, scoreSet2P1);
-        int idScoreP1 = dataBaseSQLite.getIDLastScore();
-
-        dataBaseSQLite.addScore(scoreSet1P2, scoreSet2P2);
-        int idScoreP2 = dataBaseSQLite.getIDLastScore();
-
-        //Creation new match in bdd
-        dataBaseSQLite.addMatch(player_1_name, player_2_name, duration, date, idLocationMatch, idScoreP1, idScoreP2, idStatsP1, idStatsP2);
-        int idMatch = dataBaseSQLite.getIDLastMatch();
-
-        //Add pictures of the match
-        //FAIRE LA BOUCLE FOR QUI PARCOURE TOUTES LES PHOTOS ET LES AJOUTER UNE PAR UNE
-        for(){
-            dataBaseSQLite.addPicture( , idMatch);
-        }
+        new saveDataOnBDD().execute();
 
         //Returning Home page
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return (true);
+    }
+
+    private class saveDataOnBDD extends AsyncTask<String, String, Integer> {
+        protected Integer doInBackground(String... rslt) {
+
+            //Stop and get the duration
+            long tmp = chrono.getBase();
+            chrono.stop();
+            String duration = String.valueOf(SystemClock.elapsedRealtime() - tmp);
+
+            //*************SAVE FUNCION INTO DATABASE+SQQLITE*************//
+
+            //Creation location in bdd
+            dataBaseSQLite.addLocation(latitude, longitude);
+            int idLocationMatch = dataBaseSQLite.getIDLastLocation();
+
+            //Creation Stats each player in bdd
+            dataBaseSQLite.addStatistics(pointsWinP1cpt, aceP1cpt, firstBallP1cpt, secondBallP1, directFaultP1cpt, doubleFaultP1);
+            int idStatsP1 = dataBaseSQLite.getIDLastStats();
+
+            dataBaseSQLite.addStatistics(pointsWinP2cpt, aceP2cpt, firstBallP2cpt, secondBallP2, directFaultP2cpt, doubleFaultP2);
+            int idStatsP2 = dataBaseSQLite.getIDLastStats();
+
+            //Creation score each player in bdd
+            dataBaseSQLite.addScore(scoreSet1P1, scoreSet2P1);
+            int idScoreP1 = dataBaseSQLite.getIDLastScore();
+
+            dataBaseSQLite.addScore(scoreSet1P2, scoreSet2P2);
+            int idScoreP2 = dataBaseSQLite.getIDLastScore();
+
+            //Creation new match in bdd
+            dataBaseSQLite.addMatch(player_1_name, player_2_name, duration, date, idLocationMatch, idScoreP1, idScoreP2, idStatsP1, idStatsP2);
+            int idMatch = dataBaseSQLite.getIDLastMatch();
+
+            //Add pictures of the match
+            //FAIRE LA BOUCLE FOR QUI PARCOURE TOUTES LES PHOTOS ET LES AJOUTER UNE PAR UNE
+            for(int i =0; i <= photoLocation.size(); i++){
+                dataBaseSQLite.addPicture(photoLocation.get(i), idMatch);
+            }
+
+            return 0;
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -246,15 +256,16 @@ public class RecordingActivity extends AppCompatActivity {
                 case CHOOSE_PICTURE:
                     //data.getData returns the content URI for the selected Image
                     Uri selectedImage = data.getData();
-                    System.out.println(selectedImage);
-                    photoLocation = selectedImage.toString();
+
                     //addPicture
+                    photoLocation.add(selectedImage.toString());
                     break;
 
                 case TAKE_PICTURE:
                     Uri takeImage = data.getData();
                     System.out.println(takeImage);
                     //addPicture
+                    //photoLocation.add(takeImage.toString());
                     break;
             }
         }
