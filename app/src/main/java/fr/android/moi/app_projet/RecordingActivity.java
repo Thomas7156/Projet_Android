@@ -445,5 +445,10 @@ public class RecordingActivity extends AppCompatActivity {
                 this.set2P2.setText(scoreSet2P2);
             }
         }
+
+        //End game detection
+        if (((scoreSet2P1 - scoreSet2P2 >= 2) && scoreSet2P1 >= 6) || ((scoreSet2P2 - scoreSet2P1 >= 2) && scoreSet2P2 >= 6)) {
+            this.finish();
+        }
     }
 }

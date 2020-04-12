@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private int buffer_id_rect, buffer_id_text_players, getBuffer_id_text_infos, buffer_id_delete;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,33 +54,32 @@ public class MainActivity extends AppCompatActivity {
         rect.setContentDescription("@string/border_match");
         rect.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 //Fonction pour ajouter un match
                 previous_game(view, new_match);
             }
         });
         //LAYOUT POUR LE RECTANGLE
-        ConstraintLayout.LayoutParams prams_rect = new ConstraintLayout.LayoutParams(rect.getWidth(),rect.getHeight());
+        ConstraintLayout.LayoutParams prams_rect = new ConstraintLayout.LayoutParams(rect.getWidth(), rect.getHeight());
         ConstraintLayout layout_rect = new ConstraintLayout(this);
         layout_rect.setLayoutParams(prams_rect);
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(layout_rect);
         //LAYOUT SUR LES COTES
-        constraintSet.connect(rect.getId(),ConstraintSet.START,layout.getId(),ConstraintSet.START,0);
-        constraintSet.connect(rect.getId(),ConstraintSet.END,layout.getId(),ConstraintSet.END,0);
+        constraintSet.connect(rect.getId(), ConstraintSet.START, layout.getId(), ConstraintSet.START, 0);
+        constraintSet.connect(rect.getId(), ConstraintSet.END, layout.getId(), ConstraintSet.END, 0);
         //LAYOUT : DERNIER ELEMENT
-        constraintSet.connect(rect.getId(),ConstraintSet.TOP,layout.getId(),ConstraintSet.TOP,0);
-        constraintSet.setHorizontalBias(rect.getId(),(float)0.498);
+        constraintSet.connect(rect.getId(), ConstraintSet.TOP, layout.getId(), ConstraintSet.TOP, 0);
+        constraintSet.setHorizontalBias(rect.getId(), (float) 0.498);
         constraintSet.applyTo(layout_rect);
         buffer_id_rect = rect.getId();
         //TEXT VIEW PLAYERS
         TextView players = new TextView(this);
-        players.setText(new_match.p1 +" VS "+new_match.p2);
+        players.setText(new_match.p1 + " VS " + new_match.p2);
         //LAYOUT POUR LE TEXT VIEW PLAYERS
         ///TEXT VIEW INFOS
         TextView infos = new TextView(MainActivity.this);
-        infos.setText(new_match.date + " " + new_match.duration + " " + new_match.latitude +", " + new_match.longitude);
+        infos.setText(new_match.date + " " + new_match.duration + " " + new_match.latitude + ", " + new_match.longitude);
         //LAYOUT POUR LE TEXT VIEW INFOS
         ///DELETE BOUTON ADD
         ImageView delete = new ImageView(this);
@@ -91,25 +89,24 @@ public class MainActivity extends AppCompatActivity {
         delete.setContentDescription("@string/delete");
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
                 //Fonction pour ajouter un match
                 supprimer_match(new_match);
             }
         });
 
         //LAYOUT POUR LE DELETE BUTTON
-        ConstraintLayout.LayoutParams prams_delete = new ConstraintLayout.LayoutParams(delete.getWidth(),delete.getHeight());
+        ConstraintLayout.LayoutParams prams_delete = new ConstraintLayout.LayoutParams(delete.getWidth(), delete.getHeight());
         ConstraintLayout layout_delete = new ConstraintLayout(this);
         layout_delete.setLayoutParams(prams_delete);
         ConstraintSet constraintSet_delete = new ConstraintSet();
         constraintSet.clone(layout_delete);
         //LAYOUT SUR LES COTES
-        constraintSet.connect(delete.getId(),ConstraintSet.START,rect.getId(),ConstraintSet.START,312);
-        constraintSet.connect(delete.getId(),ConstraintSet.END,rect.getId(),ConstraintSet.END,48);
+        constraintSet.connect(delete.getId(), ConstraintSet.START, rect.getId(), ConstraintSet.START, 312);
+        constraintSet.connect(delete.getId(), ConstraintSet.END, rect.getId(), ConstraintSet.END, 48);
         //LAYOUT : DERNIER ELEMENT
-        constraintSet.connect(delete.getId(),ConstraintSet.TOP,rect.getId(),ConstraintSet.TOP,54);
-        constraintSet.connect(delete.getId(),ConstraintSet.BOTTOM,rect.getId(),ConstraintSet.BOTTOM,66);
+        constraintSet.connect(delete.getId(), ConstraintSet.TOP, rect.getId(), ConstraintSet.TOP, 54);
+        constraintSet.connect(delete.getId(), ConstraintSet.BOTTOM, rect.getId(), ConstraintSet.BOTTOM, 66);
         constraintSet.applyTo(layout_delete);
         buffer_id_delete = delete.getId();
         nombre_match++;
@@ -136,39 +133,39 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public boolean new_game (View view)
-    {
-        Intent intent = new Intent(this,NewActivity.class);
+
+    public boolean new_game(View view) {
+        Intent intent = new Intent(this, NewActivity.class);
         startActivity(intent);
         return (true);
     }
-    public boolean menu (View view)
-    {
-        Intent intent = new Intent(this,MenuActivity.class);
+
+    public boolean menu(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
         return (true);
     }
-    public boolean previous_game(View view, Match new_match)
-    {
-        Intent intent = new Intent(this,StatistiquesActivity.class);
+
+    public boolean previous_game(View view, Match new_match) {
+        Intent intent = new Intent(this, StatistiquesActivity.class);
         //On transmet les infos du match correspondants
-        intent.putExtra("id",new_match.id);
-        intent.putExtra("p1",new_match.p1);
-        intent.putExtra("p2",new_match.p2);
-        intent.putExtra("duration",new_match.duration);
-        intent.putExtra("date",new_match.date);
-        intent.putExtra("latitude",new_match.latitude);
-        intent.putExtra("longitude",new_match.longitude);
-        intent.putExtra("p1_first",new_match.p1_first);
-        intent.putExtra("p1_second",new_match.p1_second);
-        intent.putExtra("p1_third",new_match.p1_third);
-        intent.putExtra("p1_forth",new_match.p1_forth);
-        intent.putExtra("p1_fifth",new_match.p1_fifth);
-        intent.putExtra("p2_first",new_match.p2_first);
-        intent.putExtra("p2_second",new_match.p2_second);
-        intent.putExtra("p2_third",new_match.p2_third);
-        intent.putExtra("p2_forth",new_match.p2_forth);
-        intent.putExtra("p2_fifth",new_match.p2_fifth);
+        intent.putExtra("id", new_match.id);
+        intent.putExtra("p1", new_match.p1);
+        intent.putExtra("p2", new_match.p2);
+        intent.putExtra("duration", new_match.duration);
+        intent.putExtra("date", new_match.date);
+        intent.putExtra("latitude", new_match.latitude);
+        intent.putExtra("longitude", new_match.longitude);
+        intent.putExtra("p1_first", new_match.p1_first);
+        intent.putExtra("p1_second", new_match.p1_second);
+        intent.putExtra("p1_third", new_match.p1_third);
+        intent.putExtra("p1_forth", new_match.p1_forth);
+        intent.putExtra("p1_fifth", new_match.p1_fifth);
+        intent.putExtra("p2_first", new_match.p2_first);
+        intent.putExtra("p2_second", new_match.p2_second);
+        intent.putExtra("p2_third", new_match.p2_third);
+        intent.putExtra("p2_forth", new_match.p2_forth);
+        intent.putExtra("p2_fifth", new_match.p2_fifth);
         intent.putExtra("p1_points", new_match.p1_points);
         intent.putExtra("p1_sets", new_match.p1_sets);
         intent.putExtra("p1_firstball", new_match.p1_firstball);
@@ -184,25 +181,25 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         return (true);
     }
-    public class Match
-    {
-        private int id;
-        private String p1,p2;
-        private int duration;
-        private String date;
-        private double latitude, longitude;
-        private int p1_first, p1_second, p1_third, p1_forth, p1_fifth;
-        private int p2_first, p2_second, p2_third, p2_forth, p2_fifth;
-        private int p1_points, p1_sets, p1_firstball, p1_secondball, p1_aces, p1_directfouls;
-        private int p2_points, p2_sets, p2_firstball, p2_secondball, p2_aces, p2_directfouls;
 
+    public class Match {
+        public int id;
+        public String p1, p2;
+        public int duration;
+        public String date;
+        public double latitude, longitude;
+        public int p1_first, p1_second, p1_third, p1_forth, p1_fifth;
+        public int p2_first, p2_second, p2_third, p2_forth, p2_fifth;
+        public int p1_points, p1_sets, p1_firstball, p1_secondball, p1_aces, p1_directfouls;
+        public int p2_points, p2_sets, p2_firstball, p2_secondball, p2_aces, p2_directfouls;
     }
-    public boolean supprimer_match(Match deleted_match)
-    {
+
+    public boolean supprimer_match(Match deleted_match) {
         //supprimer matchs
+        dataBaseSQLite.deleteMatch(deleted_match.id);
 
         //Recharger le layout
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return (true);
     }
