@@ -67,12 +67,12 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_LOCATION + "("
-                + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMS_Latitude + "DOUBLE,"
                 + COLUMS_Longitude + "DOUBLE);");
 
         db.execSQL("CREATE TABLE " + TABLE_SCORE + "("
-                + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMS_First + "INTEGER,"
                 + COLUMS_Second + "INTEGER);");
                 /*+ COLUMS_Third + "INTEGER,"
@@ -80,7 +80,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 + COLUMS_Fifth + "INTEGER);");*/
 
         db.execSQL("CREATE TABLE " + TABLE_STATISTICS + "("
-                + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMS_Points + "INTEGER,"
                 + COLUMS_FirstBall + "INTEGER,"
                 + COLUMS_SecondBall + "INTEGER,"
@@ -89,7 +89,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 + COLUMS_DirectFouls + "INTEGER);");
 
         db.execSQL("CREATE TABLE " + TABLE_MATCH + "("
-                + COLUMS_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMS_P1 + "TEXT,"
                 + COLUMS_P2 + "TEXT,"
                 + COLUMS_Duration + "INTEGER,"
@@ -99,14 +99,14 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 + COLUMS_ScoreP2 + "INTEGER,"
                 + COLUMS_StatsP1 + "INTEGER,"
                 + COLUMS_StatsP2 + "INTEGER,"
-                + "FOREIGN KEY (" + COLUMS_Location + ") REFERENCES " + TABLE_LOCATION + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
-                + "FOREIGN KEY (" + COLUMS_ScoreP1 + ") REFERENCES " + TABLE_SCORE + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
-                + "FOREIGN KEY (" + COLUMS_ScoreP2 + ") REFERENCES " + TABLE_SCORE + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
-                + "FOREIGN KEY (" + COLUMS_StatsP1 + ") REFERENCES " + TABLE_STATISTICS + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
-                + "FOREIGN KEY (" + COLUMS_StatsP2 + ") REFERENCES " + TABLE_STATISTICS + " (" + COLUMS_ID + ") ON DELETE CASCADE);");
+                + COLUMS_Location + " REFERENCES " + TABLE_LOCATION + "(" + COLUMS_ID + ")  ON DELETE CASCADE, "
+                + COLUMS_ScoreP1 + " REFERENCES " + TABLE_SCORE + "(" + COLUMS_ID + ")  ON DELETE CASCADE, "
+                + COLUMS_ScoreP2 + " REFERENCES " + TABLE_SCORE + "(" + COLUMS_ID + ")  ON DELETE CASCADE, "
+                + COLUMS_StatsP1 + " REFERENCES " + TABLE_STATISTICS + "(" + COLUMS_ID + ")  ON DELETE CASCADE, "
+                + COLUMS_StatsP2 + " REFERENCES " + TABLE_STATISTICS + "(" + COLUMS_ID + ")  ON DELETE CASCADE);");
 
         db.execSQL("CREATE TABLE " + TABLE_PICTURES + " ( "
-                + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,  "
                 + COLUMS_Path + " TEXT, "
                 + COLUMS_IDMatch + " INTEGER,"
                 + "FOREIGN KEY (" + COLUMS_IDMatch + ") REFERENCES " + TABLE_MATCH + "(" + COLUMS_ID + "));");
