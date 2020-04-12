@@ -96,11 +96,11 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
                 + COLUMS_ScoreP2 + "INTEGER,"
                 + COLUMS_StatsP1 + "INTEGER,"
                 + COLUMS_StatsP2 + "INTEGER,"
-                + "FOREIGN KEY (" + COLUMS_Location + ") REFERENCES " + TABLE_LOCATION + " (" + COLUMS_ID + "), "
-                + "FOREIGN KEY (" + COLUMS_ScoreP1 + ") REFERENCES " + TABLE_SCORE + " (" + COLUMS_ID + "), "
-                + "FOREIGN KEY (" + COLUMS_ScoreP2 + ") REFERENCES " + TABLE_SCORE + " (" + COLUMS_ID + "), "
-                + "FOREIGN KEY (" + COLUMS_StatsP1 + ") REFERENCES " + TABLE_STATISTICS + " (" + COLUMS_ID + "), "
-                + "FOREIGN KEY (" + COLUMS_StatsP2 + ") REFERENCES " + TABLE_STATISTICS + " (" + COLUMS_ID + "));");
+                + "FOREIGN KEY (" + COLUMS_Location + ") REFERENCES " + TABLE_LOCATION + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
+                + "FOREIGN KEY (" + COLUMS_ScoreP1 + ") REFERENCES " + TABLE_SCORE + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
+                + "FOREIGN KEY (" + COLUMS_ScoreP2 + ") REFERENCES " + TABLE_SCORE + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
+                + "FOREIGN KEY (" + COLUMS_StatsP1 + ") REFERENCES " + TABLE_STATISTICS + " (" + COLUMS_ID + ") ON DELETE CASCADE, "
+                + "FOREIGN KEY (" + COLUMS_StatsP2 + ") REFERENCES " + TABLE_STATISTICS + " (" + COLUMS_ID + ") ON DELETE CASCADE);");
 
         db.execSQL("CREATE TABLE " + TABLE_PICTURES + " ( "
                 + COLUMS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -129,10 +129,9 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         long result = database.insert(TABLE_LOCATION, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -150,10 +149,9 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         long result = database.insert(TABLE_SCORE, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -172,10 +170,9 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         long result = database.insert(TABLE_STATISTICS, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -190,10 +187,9 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         long result = database.insert(TABLE_PICTURES, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -215,10 +211,9 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
 
         long result = database.insert(TABLE_MATCH, null, contentValues);
 
-        if (result == -1){
+        if (result == -1) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -299,7 +294,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public int getIDLastLocation() {
         database = this.getReadableDatabase();
 
-        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_LOCATION + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_LOCATION + " ORDER BY " + COLUMS_ID + " DESC LIMIT 1";
         Cursor cursor = database.rawQuery(countQuery, null);
 
         int id = cursor.getInt(0);
@@ -310,7 +305,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public int getIDLastStats() {
         database = this.getReadableDatabase();
 
-        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_STATISTICS + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_STATISTICS + " ORDER BY " + COLUMS_ID + " DESC LIMIT 1";
         Cursor cursor = database.rawQuery(countQuery, null);
 
         int id = cursor.getInt(0);
@@ -321,7 +316,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public int getIDLastScore() {
         database = this.getReadableDatabase();
 
-        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_SCORE + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_SCORE + " ORDER BY " + COLUMS_ID + " DESC LIMIT 1";
         Cursor cursor = database.rawQuery(countQuery, null);
 
         int id = cursor.getInt(0);
@@ -332,11 +327,20 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public int getIDLastMatch() {
         database = this.getReadableDatabase();
 
-        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_MATCH + " ORDER BY "+ COLUMS_ID + " DESC LIMIT 1";
+        String countQuery = "SELECT " + COLUMS_ID + " FROM " + TABLE_MATCH + " ORDER BY " + COLUMS_ID + " DESC LIMIT 1";
         Cursor cursor = database.rawQuery(countQuery, null);
 
         int id = cursor.getInt(0);
 
         return id;
+    }
+
+    public void deleteMatch(int idMatch) {
+        database = this.getWritableDatabase();
+
+        /*String countQuery = "DELETE * FROM " + TABLE_MATCH + " WHERE " + COLUMS_ID + " = " + idMatch;
+        database.rawQuery(countQuery, null);*/
+
+        database.delete(TABLE_MATCH, COLUMS_ID + "=?", new String[]{Integer.toString(idMatch)});
     }
 }
