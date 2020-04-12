@@ -8,7 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class StatistiquesActivity extends AppCompatActivity {
+public class PicturesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +39,6 @@ public class StatistiquesActivity extends AppCompatActivity {
     public boolean previous_games(View view)
     {
         Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        return (true);
-    }
-    public boolean pictures(View view)
-    {
-        Intent intent = new Intent(this,PicturesActivity.class);
         startActivity(intent);
         return (true);
     }
