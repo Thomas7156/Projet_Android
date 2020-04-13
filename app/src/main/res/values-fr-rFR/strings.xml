@@ -53,6 +53,7 @@
     <string name="statistiques_pointss">Statistiques des points</string>
     <string name="statistiques_winning">Points gagnants</string>
     <string name="toolbar_pictures_ss_title">Photographies</string>
+    <string name="pictures_recording_textinfos">Nombre de photos :  </string>
     <string name="statistiques_direct_fault">Fautes</string>
     <string name="statistiques_provo_fault">Fautes provoquées</string>
     <string name="recording_ajouter_photo">Ajouter une photo</string>

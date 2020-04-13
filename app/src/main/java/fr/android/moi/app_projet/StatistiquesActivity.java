@@ -28,7 +28,8 @@ public class StatistiquesActivity extends AppCompatActivity {
     private TextView duration_text, p1_points_text, p2_points_text;
     private TextView p1_first_text, p2_first_text, p1_aces_text, p2_aces_text;
     private TextView p1_double_text, p2_double_text, p1_first_win_text,p2_first_win_text, p1_second_win_text,p2_second_win_text, p1_win_text,p2_win_text,p1_fault_text,p2_fault_text;
-    private int p1_first_win, p2_first_win, p1_second_win, p2_second_win;
+    private float p1_first_win, p2_first_win, p1_second_win, p2_second_win;
+    private float p1_first_arrondi, p2_first_arrondi, p1_second_arrondi, p2_second_arrondi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +41,10 @@ public class StatistiquesActivity extends AppCompatActivity {
             this.p2 = before.getString("p2");
             this.duration = (before.getInt("duration"));
             this.date = before.getString("date");
-            this.latitude = (before.getDouble("latitude"));
-            this.longitude = (before.getDouble("longitude"));
+            this.latitude = Double.valueOf(before.getString("latitude"));
+            this.longitude = Double.valueOf(before.getString("longitude"));
+            Log.e("latitude",String.valueOf(latitude));
+            Log.e("longitude",String.valueOf(longitude));
             this.p1_first = before.getInt("p1_first");
             this.p1_second = before.getInt("p1_second");
             this.p2_first = before.getInt("p2_first");
@@ -77,11 +80,21 @@ public class StatistiquesActivity extends AppCompatActivity {
             this.j2_4 = (TextView) findViewById(R.id.joueur2_4);
             this.j2_4.setText(p2);
             this.title = (TextView) findViewById(R.id.title_statistiques);
-            title.setText(p1 + " vs. " + p2 + " " + date + " - " + duration + " " + latitude + ", " + longitude);
+            title.setText(p1 + " vs. " + p2 + " - " + date + " - " + latitude + ", " + longitude);
             p1_points=p1_win_point + p2_directfouls;
             p2_points=p2_win_point + p1_directfouls;
             this.duration_text = (TextView) findViewById(R.id.duration_p1);
-            duration_text.setText(String.valueOf(duration));
+            long minutes = ((long)duration / 1000) / 60;
+            long seconds = ((long)duration / 1000) % 60;
+            String message_duration = " ";
+            if(duration<60000) {
+                message_duration = String.valueOf(seconds) + "s";
+            }
+            else
+            {
+                message_duration = String.valueOf(minutes) +"m" + String.valueOf(seconds) + "s";
+            }
+            duration_text.setText(message_duration);
             this.p1_points_text = (TextView) findViewById(R.id.p1_points_stats);
             p1_points_text.setText(String.valueOf(p1_points));
             this.p2_points_text = (TextView) findViewById(R.id.p2_points_stats);
@@ -92,12 +105,22 @@ public class StatistiquesActivity extends AppCompatActivity {
             p1_aces_text.setText(String.valueOf(p1_aces));
             this.p1_double_text = (TextView) findViewById(R.id.p1_doublefault_stats);
             p1_double_text.setText(String.valueOf(p1_doublefault));
-            p1_first_win = (p1_firstball / p1_points)*100;
+            System.out.println(p1_points);
+            System.out.println(p1_firstball);
+            if(p1_points != 0)
+            p1_first_win = (float) (((float) p1_firstball / (float) p1_points)*100);
+            else
+                p1_first_win = 0;
+            p1_first_arrondi = (int) p1_first_win;
             this.p1_first_win_text = (TextView) findViewById(R.id.p1_first_win_stats);
-            p1_first_win_text.setText(String.valueOf(p1_first_win +"%"));
-            p1_second_win = (p1_secondball/p1_points)*100;
+            p1_first_win_text.setText(String.valueOf(p1_first_arrondi +"%"));
+            if(p1_points !=0)
+            p1_second_win = (float) (((float) p1_secondball / (float) p1_points)*100);
+            else
+                p1_second_win = 0;
+            p1_second_arrondi = (int) p1_second_win;
             this.p1_second_win_text = (TextView) findViewById(R.id.p1_second_win_stats);
-            p1_second_win_text.setText(String.valueOf(p1_second_win) +"%");
+            p1_second_win_text.setText(String.valueOf(p1_second_arrondi) +"%");
             this.p1_win_text = (TextView) findViewById(R.id.p1_win_stats);
             p1_win_text.setText(String.valueOf(p1_win_point));
             this.p1_fault_text = (TextView) findViewById(R.id.p1_fault);
@@ -109,12 +132,20 @@ public class StatistiquesActivity extends AppCompatActivity {
             p2_aces_text.setText(String.valueOf(p2_aces));
             this.p2_double_text = (TextView) findViewById(R.id.p2_doublefault_stats);
             p2_double_text.setText(String.valueOf(p2_doublefault));
-            p2_first_win = (p2_firstball / p2_points)*100;
+            if(p2_points !=0)
+            p2_first_win = (float) (((float) p2_firstball / (float) p2_points)*100);
+            else
+                p2_first_win = 0;
+            p2_first_arrondi = (int) p2_first_win;
             this.p2_first_win_text = (TextView) findViewById(R.id.p2_first_win_stats);
-            p2_first_win_text.setText(String.valueOf(p2_first_win +"%"));
-            p2_second_win = (p2_secondball/p2_points)*100;
+            p2_first_win_text.setText(String.valueOf(p2_first_arrondi +"%"));
+            if(p2_points!=0)
+            p2_second_win = (float) (((float) p2_secondball / (float) p2_points)*100);
+            else
+                p2_second_win=0;
+            p2_second_arrondi = (int) p2_second_win;
             this.p2_second_win_text = (TextView) findViewById(R.id.p2_second_win_stats);
-            p2_second_win_text.setText(String.valueOf(p2_second_win +"%"));
+            p2_second_win_text.setText(String.valueOf(p2_second_arrondi +"%"));
             this.p2_win_text = (TextView) findViewById(R.id.p2_win_stats);
             p2_win_text.setText(String.valueOf(p2_win_point));
             this.p2_fault_text = (TextView) findViewById(R.id.p2_fault);

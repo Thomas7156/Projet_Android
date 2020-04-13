@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grid_pics2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".PicturesActivity"
-    tools:showIn="@layout/activity_pictures">
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:showIn="@layout/activity_pictures"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/grid_pics3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".PicturesActivity"
+        tools:showIn="@layout/activity_pictures">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/long_blue_button"
+            android:onClick="picture_add"
+            android:text="@string/recording_ajouter_photo"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:text="@string/recording_ajouter_photo" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/long_blue_button"
+            android:text="@string/recording_photo"
+            android:onClick="take_picture"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/grid_pics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".PicturesActivity"
+        tools:showIn="@layout/activity_pictures"></LinearLayout>
+</ScrollView>
+</LinearLayout>

@@ -76,28 +76,29 @@
         android:id="@+id/finish_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
         android:onClick="finish"
         android:src="@drawable/long_blue_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="235dp" />
 
     <ImageView
         android:id="@+id/take_picture_button"
-        android:layout_width="215dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="picture"
         android:src="@drawable/long_blue_button"
         app:layout_constraintBottom_toTopOf="@+id/finish_button"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/finish_button" />
 
     <ImageView
         android:id="@+id/add_picture_button"
-        android:layout_width="196dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="picture_add"
         android:src="@drawable/long_blue_button"
-        app:layout_constraintBottom_toTopOf="@+id/finish_button"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/take_picture_button"
+        app:layout_constraintStart_toStartOf="@+id/take_picture_button" />
 
     <ImageView
         android:id="@+id/imageView30"
@@ -406,16 +407,17 @@
         app:layout_constraintTop_toTopOf="@+id/imageView21" />
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="picture_add"
         android:text="@string/recording_ajouter_photo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/finish_button"
+        app:layout_constraintBottom_toBottomOf="@+id/add_picture_button"
         app:layout_constraintEnd_toEndOf="@+id/add_picture_button"
         app:layout_constraintStart_toStartOf="@+id/add_picture_button"
-        app:layout_constraintTop_toTopOf="@+id/take_picture_button" />
+        app:layout_constraintTop_toTopOf="@+id/add_picture_button" />
 
     <TextView
         android:id="@+id/textView11"
@@ -425,7 +427,7 @@
         android:text="@string/recording_photo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/finish_button"
+        app:layout_constraintBottom_toBottomOf="@+id/take_picture_button"
         app:layout_constraintEnd_toEndOf="@+id/take_picture_button"
         app:layout_constraintStart_toStartOf="@+id/take_picture_button"
         app:layout_constraintTop_toTopOf="@+id/take_picture_button" />
@@ -515,8 +517,8 @@
         android:text="@string/pictures_recording_textinfos"
         android:textColor="#30344B"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/take_picture_button" />
+        app:layout_constraintBottom_toTopOf="@+id/add_picture_button"
+        app:layout_constraintStart_toStartOf="@+id/add_picture_button" />
 
     <TextView
         android:id="@+id/number_pictures_recording"
@@ -526,7 +528,7 @@
         android:textColor="#30344B"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/text_pictures_recording"
-        app:layout_constraintTop_toBottomOf="@+id/take_picture_button" />
+        app:layout_constraintTop_toTopOf="@+id/text_pictures_recording" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

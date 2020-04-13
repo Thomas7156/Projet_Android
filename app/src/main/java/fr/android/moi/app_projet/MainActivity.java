@@ -1,26 +1,26 @@
-package fr.android.moi.app_projet;
+    package fr.android.moi.app_projet;
 
-import android.content.Intent;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.os.Bundle;
+    import android.content.Intent;
+    import android.content.res.Resources;
+    import android.database.Cursor;
+    import android.graphics.Color;
+    import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
+    import androidx.appcompat.app.AppCompatActivity;
+    import androidx.constraintlayout.widget.ConstraintLayout;
+    import androidx.constraintlayout.widget.ConstraintSet;
 
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
+    import android.util.Log;
+    import android.util.TypedValue;
+    import android.view.View;
+    import android.view.Menu;
+    import android.view.MenuItem;
+    import android.widget.ImageView;
+    import android.widget.TextView;
 
-import java.util.ArrayList;
+    import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
     // Database
     DataBaseSQLite dataBaseSQLite;
     private int nombre_match;
@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Pour chaque match
         LoadLastMatchs();
+        Log.e("ombre match", String.valueOf(nombre_match));
+        Log.e("liste machts", String.valueOf(AllMatchs.size()));
 
         /*final Match new_match = new Match();
         new_match.id = 1;
@@ -111,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
             prams_rect.startToStart = layout.getId();
             prams_rect.endToEnd = layout.getId();
             //dernier élément ajouté (utilisé buffer_id_rect)
-            if(i==0) {
-                prams_rect.topToBottom = R.id.layout_content_main;
+            if(nombre_match==0) {
+                prams_rect.topToBottom = R.id.imageView2;
             }
             else
             {
                 prams_rect.topToBottom = buffer_id_rect;
             }
             prams_rect.horizontalBias = (float) 0.498;
-            layout.addView(rect, prams_rect);
+            layout.addView(rect, -10000, prams_rect);
             buffer_id_rect = rect.getId();
 
             ///DELETE BOUTON ADD
@@ -154,12 +156,12 @@ public class MainActivity extends AppCompatActivity {
             prams_delete.rightMargin = (int) (int) (48 * density);
             prams_delete.bottomMargin = (int) (66 * density);
             prams_delete.topMargin = (int) (54 * density);
-            layout.addView(delete, prams_delete);
+            layout.addView(delete, -9999, prams_delete);
             buffer_id_delete = delete.getId();
 
             //TEXT VIEW PLAYERS
             TextView players = new TextView(this);
-            players.setText(new_match.p1 + " VS " + new_match.p2);
+            players.setText(new_match.p1 + " VS " + new_match.p2 + " - " +new_match.date);
             players.setId(View.generateViewId());
             players.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             players.setTextColor(Color.parseColor("#30344B"));
@@ -180,14 +182,22 @@ public class MainActivity extends AppCompatActivity {
             prams_players.setMarginStart((int) (53 * density));
             prams_players.topMargin = (int) (52 * density);
             prams_players.topToTop = buffer_id_rect;
-            layout.addView(players, prams_players);
+            layout.addView(players, -9998, prams_players);
             buffer_id_text_players = players.getId();
 
             ///TEXT VIEW INFOS
             TextView infos = new TextView(MainActivity.this);
-            infos.setText(new_match.date + " " + new_match.duration + " min - " + new_match.latitude + ", " + new_match.longitude);
+            long minutes = ((long)new_match.duration / 1000) / 60;
+            long seconds = ((long)new_match.duration / 1000) % 60;
+            if(new_match.duration<60000) {
+                infos.setText(seconds + "s" +" - GPS : " + new_match.latitude + ", " + new_match.longitude);
+            }
+            else
+            {
+                infos.setText(minutes + "m"+ seconds +"s" + " - GPS : " + new_match.latitude + ", " + new_match.longitude);
+            }
             infos.setTextColor(Color.parseColor("#707070"));
-            infos.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            infos.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
 
             //LAYOUT POUR LE TEXT VIEW INFOS
             ConstraintLayout.LayoutParams prams_infos = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -200,10 +210,10 @@ public class MainActivity extends AppCompatActivity {
             prams_infos.topToBottom = buffer_id_text_players;
             prams_infos.topMargin = (int) (8 * density);
             prams_infos.startToStart = buffer_id_text_players;
-            layout.addView(infos, prams_infos);
+            layout.addView(infos, -9997, prams_infos);
             getBuffer_id_text_infos = infos.getId();
-//        layout.addView(players);
-//        layout.addView(delete);
+    //        layout.addView(players);
+    //        layout.addView(delete);
             //      layout.addView(layout_players);
             //    layout.addView(layout_infos);
             nombre_match++;
@@ -341,4 +351,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         return (true);
     }
-}
+    }

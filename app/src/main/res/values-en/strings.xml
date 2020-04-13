@@ -44,6 +44,7 @@
     <string name="statistiques_winning_points">Earned points</string>
     <string name="statistiques_1st">1st balls</string>
     <string name="toolbar_pictures_ss_title">Pictures</string>
+    <string name="pictures_recording_textinfos">Number of pictures :  </string>
     <string name="statistiques_1st_winning">Points earned on first ball</string>
     <string name="statistiques_2st_wining">Points earned on opponent\'s 2nd ball</string>
     <string name="statistiques_break_convert">Converted break balls</string>

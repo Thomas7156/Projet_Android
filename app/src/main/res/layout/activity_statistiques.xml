@@ -83,11 +83,18 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <include
-        layout="@layout/content_statistics"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="631dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        <include
+            layout="@layout/content_statistics"
+            android:layout_width="match_parent"
+            android:layout_height="631dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
