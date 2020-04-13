@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/duration_stats"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -15,8 +16,8 @@
         android:text="@string/statistiques_2st_wining"
         android:textColor="#236CFD"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+        app:layout_constraintStart_toStartOf="@+id/textView47"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/textView31"
@@ -39,28 +40,6 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView31"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
-
-    <TextView
-        android:id="@+id/textView50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_provo_fault"
-        android:textColor="#236CFD"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textView32"
-        app:layout_constraintTop_toBottomOf="@+id/textView32" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="176dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/statistiques_break_convert"
-        android:textColor="#236CFD"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/textView9"
@@ -117,25 +96,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_break_saved"
-        android:textColor="#236CFD"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/textView25"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
-
-    <TextView
         android:id="@+id/textView47"
         android:layout_width="194dp"
         android:layout_height="0dp"
         android:text="@string/statistiques_1st_winning"
         android:textColor="#236CFD"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView29"
-        app:layout_constraintStart_toStartOf="@+id/textView29"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -157,6 +125,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur1_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -165,6 +134,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur2_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -184,6 +154,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/stats_generales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -192,6 +163,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur1_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -200,6 +172,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur2_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -230,6 +203,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur1_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -238,6 +212,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur2_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -267,6 +242,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur1_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -275,6 +251,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/joueur2_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -284,7 +261,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/duration_p1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="165dp"
@@ -296,56 +273,29 @@
         app:layout_constraintStart_toEndOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/textView55"
+        android:id="@+id/p2_second_win_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView56"
-        app:layout_constraintStart_toStartOf="@+id/textView59"
+        app:layout_constraintStart_toStartOf="@+id/p2_first_win_stats"
         app:layout_constraintTop_toTopOf="@+id/textView56" />
 
     <TextView
-        android:id="@+id/textView59"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView56"
-        app:layout_constraintStart_toEndOf="@+id/textView57"
-        app:layout_constraintTop_toTopOf="@+id/textView28"
-        app:layout_constraintVertical_bias="0.478" />
-
-    <TextView
-        android:id="@+id/textView57"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView56"
-        app:layout_constraintStart_toEndOf="@+id/textView28"
-        app:layout_constraintTop_toTopOf="@+id/textView28" />
-
-    <TextView
+        android:id="@+id/p1_second_win_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView56"
-        app:layout_constraintEnd_toEndOf="@+id/textView57"
-        app:layout_constraintStart_toStartOf="@+id/textView57"
+        app:layout_constraintStart_toStartOf="@+id/p1_first_win_stats"
         app:layout_constraintTop_toTopOf="@+id/textView56" />
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/p1_firstball_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -354,11 +304,11 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/textView35"
+        app:layout_constraintStart_toStartOf="@+id/duration_p1"
         app:layout_constraintTop_toTopOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/p2_firstball_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
@@ -366,102 +316,77 @@
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView38"
-        app:layout_constraintStart_toEndOf="@+id/textView38" />
+        app:layout_constraintBottom_toBottomOf="@+id/p1_firstball_stats"
+        app:layout_constraintStart_toEndOf="@+id/p1_firstball_stats" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/p1_aces_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="@+id/textView38"
-        app:layout_constraintStart_toStartOf="@+id/textView38"
+        app:layout_constraintEnd_toEndOf="@+id/p1_firstball_stats"
+        app:layout_constraintStart_toStartOf="@+id/p1_firstball_stats"
         app:layout_constraintTop_toTopOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/p2_aces_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView36"
+        app:layout_constraintEnd_toEndOf="@+id/p2_firstball_stats"
         app:layout_constraintTop_toTopOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/p1_doublefault_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="@+id/textView41"
-        app:layout_constraintStart_toStartOf="@+id/textView41"
+        app:layout_constraintEnd_toEndOf="@+id/p1_aces_stats"
+        app:layout_constraintStart_toStartOf="@+id/p1_aces_stats"
         app:layout_constraintTop_toTopOf="@+id/textView25" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/p2_doublefault_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="@+id/textView42" />
+        app:layout_constraintEnd_toEndOf="@+id/p2_aces_stats" />
 
     <TextView
-        android:id="@+id/textView43"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView29"
-        app:layout_constraintEnd_toEndOf="@+id/textView45"
-        app:layout_constraintStart_toStartOf="@+id/textView45"
-        app:layout_constraintTop_toTopOf="@+id/textView29" />
-
-    <TextView
-        android:id="@+id/textView44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView29"
-        app:layout_constraintEnd_toEndOf="@+id/textView39"
-        app:layout_constraintStart_toStartOf="@+id/textView39"
-        app:layout_constraintTop_toTopOf="@+id/textView29" />
-
-    <TextView
+        android:id="@+id/p1_first_win_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView47"
-        app:layout_constraintEnd_toEndOf="@+id/textView43"
-        app:layout_constraintStart_toStartOf="@+id/textView43"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintStart_toStartOf="@+id/p1_doublefault_stats"
+        app:layout_constraintTop_toBottomOf="@+id/p1_doublefault_stats" />
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/p2_first_win_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView47"
-        app:layout_constraintEnd_toEndOf="@+id/textView44"
-        app:layout_constraintStart_toStartOf="@+id/textView44"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintStart_toStartOf="@+id/p2_doublefault_stats"
+        app:layout_constraintTop_toBottomOf="@+id/p2_doublefault_stats" />
 
     <TextView
-        android:id="@+id/textView48"
+        android:id="@+id/p1_win_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="89dp"
@@ -474,7 +399,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView31" />
 
     <TextView
-        android:id="@+id/textView52"
+        android:id="@+id/p2_win_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="83dp"
@@ -482,98 +407,68 @@
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView48"
-        app:layout_constraintStart_toEndOf="@+id/textView48" />
+        app:layout_constraintBottom_toBottomOf="@+id/p1_win_stats"
+        app:layout_constraintStart_toEndOf="@+id/p1_win_stats" />
 
     <TextView
-        android:id="@+id/textView51"
+        android:id="@+id/p1_fault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView32"
-        app:layout_constraintEnd_toEndOf="@+id/textView48"
-        app:layout_constraintStart_toStartOf="@+id/textView48"
+        app:layout_constraintEnd_toEndOf="@+id/p1_win_stats"
+        app:layout_constraintStart_toStartOf="@+id/p1_win_stats"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
     <TextView
-        android:id="@+id/textView49"
+        android:id="@+id/p2_fault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView50"
-        app:layout_constraintEnd_toEndOf="@+id/textView51"
-        app:layout_constraintStart_toStartOf="@+id/textView51"
-        app:layout_constraintTop_toTopOf="@+id/textView50" />
-
-    <TextView
-        android:id="@+id/textView53"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView52"
+        app:layout_constraintEnd_toEndOf="@+id/p2_win_stats"
         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
     <TextView
+        android:id="@+id/p2_points_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:text="@string/statistiques_empty_stats"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView34"
+        app:layout_constraintStart_toStartOf="@+id/p1_points_stats" />
+
+    <TextView
+        android:id="@+id/p1_points_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/statistiques_empty_stats"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView34"
-        app:layout_constraintEnd_toEndOf="@+id/textView33" />
-
-    <TextView
-        android:id="@+id/textView54"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView34"
-        app:layout_constraintEnd_toEndOf="@+id/textView35" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView50"
-        app:layout_constraintEnd_toEndOf="@+id/textView53" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:text="@string/statistiques_empty_stats"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView35"
-        app:layout_constraintStart_toEndOf="@+id/textView35" />
+        app:layout_constraintEnd_toEndOf="@+id/duration_p1" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:onClick="pictures"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView50"
+        app:layout_constraintTop_toBottomOf="@+id/p1_fault"
         app:srcCompat="@drawable/long_blue_button" />
 
     <TextView
-        android:onClick="pictures"
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="pictures"
         android:text="@string/statistiques_pictures"
         android:textColor="#FFFFFF"
         android:textSize="16sp"

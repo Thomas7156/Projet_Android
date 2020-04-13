@@ -5,14 +5,32 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PicturesActivity extends AppCompatActivity {
+    private int id,duration;
+    private String p1,p2,date;
+    private Double latitude,longitude;
+    private TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistiques);
+        setContentView(R.layout.activity_pictures);
+        Bundle before = getIntent().getExtras();
+        if (before!=null)
+        {
+            id = before.getInt("match_id");
+            p1 = before.getString("joueur1");
+            p2 = before.getString("joueur2");
+            date = before.getString("date");
+            duration = before.getInt("duration");
+            latitude = before.getDouble("latitude");
+            longitude = before.getDouble("longitude");
+            this.title = (TextView) findViewById(R.id.title_pictures);
+            title.setText(p1 + " vs. " + p2 + " " + date + " - " + duration + " " + latitude + ", " + longitude);
+        }
     }
 
     @Override

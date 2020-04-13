@@ -50,7 +50,7 @@
             android:layout_marginEnd="334dp"
             android:layout_marginRight="334dp"
             android:layout_marginBottom="58dp"
-            android:text="@string/toolbar_stats_ss_title"
+            android:text="@string/toolbar_pictures_ss_title"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,13 +61,12 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
+            android:id="@+id/title_pictures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
             android:layout_marginTop="52dp"
             android:layout_marginEnd="175dp"
-            android:layout_marginRight="175dp"
             android:layout_marginBottom="15dp"
             android:text="@string/toolbar_stats_title"
             android:textColor="#FFFFFF"

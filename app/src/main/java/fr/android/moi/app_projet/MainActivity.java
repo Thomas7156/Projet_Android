@@ -71,124 +71,12 @@ public class MainActivity extends AppCompatActivity {
         new_match.p2_firstball = 2;
         new_match.p2_secondball = 2;
         new_match.p2_aces = 2;
-        new_match.p2_directfouls = 2;*/
+        new_match.p2_directfouls = 2;
+        new_match.p1_doublefault = 2;
+        new_match.p2_doublefault = 2; */
 
         //Ajouter les infos
         // ex : new_match.id = id_database;
-        ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.layout_content_main);
-        Log.e("VERIF LAYOUT", layout.toString());
-        ImageView rect = new ImageView(this);
-        rect.setImageResource(R.drawable.match_precedent_contour);
-        //On définit l'affichage du rect
-        rect.setId(View.generateViewId());
-        rect.setContentDescription("@string/border_match");
-        rect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Fonction pour ajouter un match
-                previous_game(view, new_match);
-            }
-        });
-
-        //LAYOUT POUR LE RECTANGLE
-        ConstraintLayout.LayoutParams prams_rect = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-
-        //LAYOUT : DERNIER ELEMENT
-        prams_rect.startToStart = layout.getId();
-        prams_rect.endToEnd = layout.getId();
-
-        //dernier élément ajouté (utilisé buffer_id_rect)
-        prams_rect.topToBottom = R.id.test;
-        prams_rect.horizontalBias = (float) 0.498;
-        layout.addView(rect, prams_rect);
-        buffer_id_rect = rect.getId();
-
-        ///DELETE BOUTON ADD
-        ImageView delete = new ImageView(this);
-        delete.setImageResource(R.drawable.accueil_delete_match);
-
-        //On définit l'affichage du rect
-        delete.setId(View.generateViewId());
-        delete.setContentDescription("@string/delete");
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Fonction pour ajouter un match
-                supprimer_match(new_match);
-            }
-        });
-
-        //LAYOUT POUR LE DELETE BUTTON
-        ConstraintLayout.LayoutParams prams_delete = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-
-        //LAYOUT SUR LES COTES
-
-        //LAYOUT : DERNIER ELEMENT
-        float density = this.getResources().getDisplayMetrics().density;
-        prams_delete.startToStart = buffer_id_rect;
-        prams_delete.endToEnd = buffer_id_rect;
-        prams_delete.topToTop = buffer_id_rect;
-        prams_delete.bottomToBottom = buffer_id_rect;
-        prams_delete.setMarginStart((int) (312 * density));
-        prams_delete.setMarginEnd((int) (48 * density));
-        prams_delete.leftMargin = (int) (312 * density);
-        prams_delete.rightMargin = (int) (int) (48 * density);
-        prams_delete.bottomMargin = (int) (66 * density);
-        prams_delete.topMargin = (int) (54 * density);
-        layout.addView(delete, prams_delete);
-        buffer_id_delete = delete.getId();
-
-        //TEXT VIEW PLAYERS
-        TextView players = new TextView(this);
-        players.setText(new_match.p1 + " VS " + new_match.p2);
-        players.setId(View.generateViewId());
-        players.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        players.setTextColor(Color.parseColor("#30344B"));
-        players.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Fonction pour ajouter un match
-                previous_game(view, new_match);
-            }
-        });
-
-        //LAYOUT POUR LE TEXT VIEW PLAYERS
-        ConstraintLayout.LayoutParams prams_players = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-
-        //LAYOUT SUR LES COTES
-        //LAYOUT : DERNIER ELEMENT
-        prams_players.startToStart = buffer_id_rect;
-        prams_players.setMarginStart((int) (53 * density));
-        prams_players.topMargin = (int) (52 * density);
-        prams_players.topToTop = buffer_id_rect;
-        layout.addView(players, prams_players);
-        buffer_id_text_players = players.getId();
-
-        ///TEXT VIEW INFOS
-        TextView infos = new TextView(MainActivity.this);
-        infos.setText(new_match.date + " " + new_match.duration + " min - " + new_match.latitude + ", " + new_match.longitude);
-        infos.setTextColor(Color.parseColor("#707070"));
-        infos.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-
-        //LAYOUT POUR LE TEXT VIEW INFOS
-        ConstraintLayout.LayoutParams prams_infos = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-
-        //LAYOUT SUR LES COTES
-        //LAYOUT : DERNIER ELEMENT
-        prams_infos.horizontalBias = (float) 0.0;
-        prams_infos.verticalBias = (float) 0.0;
-        prams_infos.bottomToBottom = buffer_id_rect;
-        prams_infos.topToBottom = buffer_id_text_players;
-        prams_infos.topMargin = (int) (8 * density);
-        prams_infos.startToStart = buffer_id_text_players;
-        layout.addView(infos, prams_infos);
-        getBuffer_id_text_infos = infos.getId();
-//        layout.addView(players);
-//        layout.addView(delete);
-        //      layout.addView(layout_players);
-        //    layout.addView(layout_infos);
-        nombre_match++;
-        Log.e("verif", "OKKKK");
     }
 
     public void LoadLastMatchs() {
@@ -197,9 +85,129 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < elem.getCount(); i++) {
             final Match new_match = new Match(elem);
-
             AllMatchs.add(new_match);
 
+            //Ajouter les infos
+            // ex : new_match.id = id_database;
+            ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.layout_content_main);
+            Log.e("VERIF LAYOUT", layout.toString());
+            ImageView rect = new ImageView(this);
+            rect.setImageResource(R.drawable.match_precedent_contour);
+            //On définit l'affichage du rect
+            rect.setId(View.generateViewId());
+            rect.setContentDescription("@string/border_match");
+            rect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Fonction pour ajouter un match
+                    previous_game(view, new_match);
+                }
+            });
+
+            //LAYOUT POUR LE RECTANGLE
+            ConstraintLayout.LayoutParams prams_rect = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+            //LAYOUT : DERNIER ELEMENT
+            prams_rect.startToStart = layout.getId();
+            prams_rect.endToEnd = layout.getId();
+            //dernier élément ajouté (utilisé buffer_id_rect)
+            if(i==0) {
+                prams_rect.topToBottom = R.id.layout_content_main;
+            }
+            else
+            {
+                prams_rect.topToBottom = buffer_id_rect;
+            }
+            prams_rect.horizontalBias = (float) 0.498;
+            layout.addView(rect, prams_rect);
+            buffer_id_rect = rect.getId();
+
+            ///DELETE BOUTON ADD
+            ImageView delete = new ImageView(this);
+            delete.setImageResource(R.drawable.accueil_delete_match);
+
+            //On définit l'affichage du rect
+            delete.setId(View.generateViewId());
+            delete.setContentDescription("@string/delete");
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Fonction pour ajouter un match
+                    supprimer_match(new_match);
+                }
+            });
+
+            //LAYOUT POUR LE DELETE BUTTON
+            ConstraintLayout.LayoutParams prams_delete = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+            //LAYOUT SUR LES COTES
+
+            //LAYOUT : DERNIER ELEMENT
+            float density = this.getResources().getDisplayMetrics().density;
+            prams_delete.startToStart = buffer_id_rect;
+            prams_delete.endToEnd = buffer_id_rect;
+            prams_delete.topToTop = buffer_id_rect;
+            prams_delete.bottomToBottom = buffer_id_rect;
+            prams_delete.setMarginStart((int) (312 * density));
+            prams_delete.setMarginEnd((int) (48 * density));
+            prams_delete.leftMargin = (int) (312 * density);
+            prams_delete.rightMargin = (int) (int) (48 * density);
+            prams_delete.bottomMargin = (int) (66 * density);
+            prams_delete.topMargin = (int) (54 * density);
+            layout.addView(delete, prams_delete);
+            buffer_id_delete = delete.getId();
+
+            //TEXT VIEW PLAYERS
+            TextView players = new TextView(this);
+            players.setText(new_match.p1 + " VS " + new_match.p2);
+            players.setId(View.generateViewId());
+            players.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            players.setTextColor(Color.parseColor("#30344B"));
+            players.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Fonction pour ajouter un match
+                    previous_game(view, new_match);
+                }
+            });
+
+            //LAYOUT POUR LE TEXT VIEW PLAYERS
+            ConstraintLayout.LayoutParams prams_players = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+            //LAYOUT SUR LES COTES
+            //LAYOUT : DERNIER ELEMENT
+            prams_players.startToStart = buffer_id_rect;
+            prams_players.setMarginStart((int) (53 * density));
+            prams_players.topMargin = (int) (52 * density);
+            prams_players.topToTop = buffer_id_rect;
+            layout.addView(players, prams_players);
+            buffer_id_text_players = players.getId();
+
+            ///TEXT VIEW INFOS
+            TextView infos = new TextView(MainActivity.this);
+            infos.setText(new_match.date + " " + new_match.duration + " min - " + new_match.latitude + ", " + new_match.longitude);
+            infos.setTextColor(Color.parseColor("#707070"));
+            infos.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+
+            //LAYOUT POUR LE TEXT VIEW INFOS
+            ConstraintLayout.LayoutParams prams_infos = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+            //LAYOUT SUR LES COTES
+            //LAYOUT : DERNIER ELEMENT
+            prams_infos.horizontalBias = (float) 0.0;
+            prams_infos.verticalBias = (float) 0.0;
+            prams_infos.bottomToBottom = buffer_id_rect;
+            prams_infos.topToBottom = buffer_id_text_players;
+            prams_infos.topMargin = (int) (8 * density);
+            prams_infos.startToStart = buffer_id_text_players;
+            layout.addView(infos, prams_infos);
+            getBuffer_id_text_infos = infos.getId();
+//        layout.addView(players);
+//        layout.addView(delete);
+            //      layout.addView(layout_players);
+            //    layout.addView(layout_infos);
+            nombre_match++;
+            Log.e("verif", "OKKKK");
             elem.moveToNext();
         }
     }
@@ -257,12 +265,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("p1_firstball", new_match.p1_firstball);
         intent.putExtra("p1_secondball", new_match.p1_secondball);
         intent.putExtra("p1_aces", new_match.p1_aces);
+        intent.putExtra("p1_double_fault", new_match.p1_doubleFaults);
         intent.putExtra("p1_directfouls", new_match.p1_directfouls);
         intent.putExtra("p2_points", new_match.p2_points);
         intent.putExtra("p2_doubleFaults", new_match.p2_doubleFaults);
         intent.putExtra("p2_firstball", new_match.p2_firstball);
         intent.putExtra("p2_secondball", new_match.p2_secondball);
         intent.putExtra("p2_aces", new_match.p2_aces);
+        intent.putExtra("p2_double_fault", new_match.p2_doubleFaults);
         intent.putExtra("p2_directfouls", new_match.p2_directfouls);
         startActivity(intent);
         return (true);
