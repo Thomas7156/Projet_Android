@@ -51,7 +51,7 @@ public class PicturesActivity extends AppCompatActivity {
             latitude = before.getDouble("latitude");
             longitude = before.getDouble("longitude");
             this.title = (TextView) findViewById(R.id.title_pictures);
-            title.setText(p1 + " vs. " + p2 + " " + date + " - " + duration + " " + latitude + ", " + longitude);
+            title.setText(p1 + " vs. " + p2 + " - " + date + " - " + latitude + ", " + longitude);
         }
         LoadLastPictures();
     }

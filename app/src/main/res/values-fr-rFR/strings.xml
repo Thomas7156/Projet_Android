@@ -25,7 +25,6 @@
     <string name="toolbar_enregistrement_ss_title">Match en cours</string>
     <string name="toolbar_enregistrement_title">Enregistrement d\'un match</string>
     <string name="toolbar_stats_ss_title">Statistiques</string>
-    <string name="toolbar_stats_title">Joueur 1 vs. Joueur 2 HH/MM/YYYY - HH:MM</string>
     <string name="nouveau_nom_joueur_2">Nom Joueur 2</string>
     <string name="nouveau_nom_joueur_1">Nom Joueur 1</string>
     <string name="nouveau_locate">Localisation</string>
