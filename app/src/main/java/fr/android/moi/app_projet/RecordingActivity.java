@@ -70,8 +70,8 @@ public class RecordingActivity extends AppCompatActivity {
     int pointsWinP2cpt;
     public String player_1_name;
     public String player_2_name;
-    public Double latitude;
-    public Double longitude;
+    public String latitude;
+    public String longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,13 +130,13 @@ public class RecordingActivity extends AppCompatActivity {
         Bundle before = getIntent().getExtras();
         player_1_name = "";
         player_2_name = "";
-        latitude = 0.0;
-        longitude = 0.0;
+        latitude = "";
+        longitude = "";
         if (before != null) {
             player_1_name = before.getString("player1");
             player_2_name = before.getString("player2");
-            latitude = Double.valueOf(before.getString("latitude"));
-            longitude = Double.valueOf(before.getString("longitude"));
+            latitude = before.getString("latitude");
+            longitude = before.getString("longitude");
             player1.setText(player_1_name);
             player2.setText(player_2_name);
         }
@@ -178,11 +178,11 @@ public class RecordingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean previous_games(View view) {
+    /*public boolean previous_games(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return (true);
-    }
+    }*/
 
     public boolean picture(View view) {
         //PHOTO FUNCTION
@@ -248,7 +248,7 @@ public class RecordingActivity extends AppCompatActivity {
 
             //Add pictures of the match
             //FAIRE LA BOUCLE FOR QUI PARCOURE TOUTES LES PHOTOS ET LES AJOUTER UNE PAR UNE
-            for(int i =0; i <= photoLocation.size(); i++){
+            for(int i = 0; i < photoLocation.size(); i++){
                 dataBaseSQLite.addPicture(photoLocation.get(i), idMatch);
             }
 
@@ -462,7 +462,7 @@ public class RecordingActivity extends AppCompatActivity {
 
         //End game detection
         if (((scoreSet2P1 - scoreSet2P2 >= 2) && scoreSet2P1 >= 6) || ((scoreSet2P2 - scoreSet2P1 >= 2) && scoreSet2P2 >= 6)) {
-            this.finish();
+            this.finish(null);
         }
     }
 }

@@ -208,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
             //    layout.addView(layout_infos);
             nombre_match++;
             Log.e("verif", "OKKKK");
+
             elem.moveToNext();
         }
     }
@@ -283,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
         public String p1, p2;
         public int duration;
         public String date;
-        public double latitude, longitude;
+        public String latitude, longitude;
         public int p1_first, p1_second;
         public int p2_first, p2_second;
         public int p1_points, p1_firstball, p1_secondball, p1_aces, p1_doubleFaults, p1_directfouls;
@@ -297,18 +298,22 @@ public class MainActivity extends AppCompatActivity {
             date = elem.getString(4);
 
             Cursor location = dataBaseSQLite.getLocationByID(elem.getInt(5));
-            latitude = location.getDouble(1);
-            longitude = location.getDouble(2);
+            location.moveToFirst();
+            latitude = location.getString(1);
+            longitude = location.getString(2);
 
             Cursor scoreP1 = dataBaseSQLite.getScoreByID(elem.getInt(6));
+            scoreP1.moveToFirst();
             p1_first = scoreP1.getInt(1);
             p1_second = scoreP1.getInt(2);
 
             Cursor scoreP2 = dataBaseSQLite.getScoreByID(elem.getInt(7));
+            scoreP2.moveToFirst();
             p2_first = scoreP2.getInt(1);
             p2_second = scoreP2.getInt(2);
 
             Cursor statsP1 = dataBaseSQLite.getStatisticsByID(elem.getInt(8));
+            statsP1.moveToFirst();
             p1_points = statsP1.getInt(1);
             p1_firstball = statsP1.getInt(2);
             p1_secondball = statsP1.getInt(3);
@@ -317,6 +322,7 @@ public class MainActivity extends AppCompatActivity {
             p1_directfouls = statsP1.getInt(6);
 
             Cursor statsP2 = dataBaseSQLite.getStatisticsByID(elem.getInt(9));
+            statsP2.moveToFirst();
             p2_points = statsP2.getInt(1);
             p2_firstball = statsP2.getInt(2);
             p2_secondball = statsP2.getInt(3);
@@ -332,13 +338,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Recharger le layout
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        return (true);
-    }
-
-    //test
-    public boolean previous_game(View view) {
-        Intent intent = new Intent(this, StatistiquesActivity.class);
         startActivity(intent);
         return (true);
     }
