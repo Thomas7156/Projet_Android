@@ -279,7 +279,7 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
     public Cursor getPictureByID(int ID) {
         database = this.getReadableDatabase();
 
-        String countQuery = "SELECT " + COLUMS_Path + " FROM " + TABLE_PICTURES + " WHERE " + COLUMS_IDMatch + " = " + ID;
+        String countQuery = "SELECT * FROM " + TABLE_PICTURES + " WHERE " + COLUMS_IDMatch + " = " + ID;
         Cursor cursor = database.rawQuery(countQuery, null);
 
         return cursor;
@@ -350,5 +350,14 @@ public class DataBaseSQLite extends SQLiteOpenHelper {
         database.rawQuery(countQuery, null);*/
 
         database.delete(TABLE_MATCH, COLUMS_ID + "=?", new String[]{Integer.toString(idMatch)});
+    }
+    public void deletePictures(int idPictures)
+    {
+        database = this.getWritableDatabase();
+
+        /*String countQuery = "DELETE * FROM " + TABLE_MATCH + " WHERE " + COLUMS_ID + " = " + idMatch;
+        database.rawQuery(countQuery, null);*/
+
+        database.delete(TABLE_PICTURES, COLUMS_ID + "=?", new String[]{Integer.toString(idPictures)});
     }
 }
