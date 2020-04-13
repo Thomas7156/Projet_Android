@@ -90,6 +90,13 @@ public class RecordingActivity extends AppCompatActivity {
         this.player1 = (TextView) findViewById(R.id.recording_joueur1);
         this.player2 = (TextView) findViewById(R.id.recording_joueur2);
 
+        this.pointsP1.setText("0");
+        this.pointsP2.setText("0");
+        this.set1P1.setText("0");
+        this.set1P2.setText("0");
+        this.set2P1.setText("0");
+        this.set2P2.setText("0");
+
         //this.set3P1 = (TextView) findViewById(R.id.textView23);
         //this.set3P2 = (TextView) findViewById(R.id.textView23);
         this.PlayerEngaging = (TextView) findViewById(R.id.textView13);
@@ -272,22 +279,18 @@ public class RecordingActivity extends AppCompatActivity {
     }
 
     public void myClickHandler(View view) {
-        //String running = String.valueOf(this.operation.getText());
         int cptPoints;
 
         //Condition pour passer du set 1 au set 2
-        if (set1 == true) {
-            int scoreP1 = Integer.parseInt(String.valueOf(set1P1.getText()));
-            int scoreP2 = Integer.parseInt(String.valueOf(set1P2.getText()));
-
-            if (((scoreP1 - scoreP2 >= 2) && scoreP1 >= 6) || ((scoreP2 - scoreP1 >= 2) && scoreP2 >= 6)) {
+        if (set1) {
+            if (((scoreSet1P1 - scoreSet1P2 >= 2) && scoreSet1P1 >= 6) || ((scoreSet1P2 - scoreSet1P1 >= 2) && scoreSet1P2 >= 6)) {
                 set1 = false;
             }
         }
 
         switch (view.getId()) {
             case R.id.imageView32:
-                if (serviceP1 == false) {
+                if (!serviceP1) {
                     checkboxP1.setImageResource(R.drawable.red_box);
                     checkboxP2.setImageResource(R.drawable.empty_red_box);
                     serviceP1 = true;
@@ -296,7 +299,7 @@ public class RecordingActivity extends AppCompatActivity {
                 break;
 
             case R.id.imageView33:
-                if (serviceP1 == true) {
+                if (serviceP1) {
                     checkboxP1.setImageResource(R.drawable.empty_red_box);
                     checkboxP2.setImageResource(R.drawable.red_box);
                     serviceP1 = false;
@@ -305,7 +308,7 @@ public class RecordingActivity extends AppCompatActivity {
                 break;
 
             case R.id.imageView34:
-                if (serviceP1 == true) {
+                if (serviceP1) {
                     firstBallP1cpt += 1;
                 } else {
                     firstBallP2cpt += 1;
@@ -313,7 +316,7 @@ public class RecordingActivity extends AppCompatActivity {
                 break;
 
             case R.id.imageView30:
-                if (serviceP1 == true) {
+                if (serviceP1) {
                     secondBallP1 += 1;
                 } else {
                     secondBallP2 += 1;
@@ -321,30 +324,30 @@ public class RecordingActivity extends AppCompatActivity {
                 break;
 
             case R.id.imageView29:
-                if (serviceP1 == true) {
+                if (serviceP1) {
                     doubleFaultP1 += 1;
 
                     cptPoints = Integer.parseInt(String.valueOf(pointsP2.getText()));
                     cptPoints += 15;
-                    this.pointsP2.setText(cptPoints);
+                    this.pointsP2.setText(String.valueOf(cptPoints));
                 } else {
                     doubleFaultP2 += 1;
 
                     cptPoints = Integer.parseInt(String.valueOf(pointsP1.getText()));
                     cptPoints += 15;
-                    this.pointsP1.setText(cptPoints);
+                    this.pointsP1.setText(String.valueOf(cptPoints));
                 }
                 break;
 
             case R.id.imageView31:
-                if (serviceP1 == true) {
+                if (serviceP1) {
                     aceP1cpt += 1;
                     firstBallP1cpt += 1;
                     pointsWinP1cpt += 1;
 
                     cptPoints = Integer.parseInt(String.valueOf(pointsP1.getText()));
                     cptPoints += 15;
-                    this.pointsP1.setText(cptPoints);
+                    this.pointsP1.setText(String.valueOf(cptPoints));
                 } else {
                     aceP2cpt += 1;
                     firstBallP2cpt += 1;
@@ -352,19 +355,19 @@ public class RecordingActivity extends AppCompatActivity {
 
                     cptPoints = Integer.parseInt(String.valueOf(pointsP2.getText()));
                     cptPoints += 15;
-                    this.pointsP2.setText(cptPoints);
+                    this.pointsP2.setText(String.valueOf(cptPoints));
                 }
                 break;
 
             case R.id.imageView28:
-                if (serviceP1 == true) {
+                if (serviceP1) {
                     aceP1cpt += 1;
                     secondBallP1 += 1;
                     pointsWinP1cpt += 1;
 
                     cptPoints = Integer.parseInt(String.valueOf(pointsP1.getText()));
                     cptPoints += 15;
-                    this.pointsP1.setText(cptPoints);
+                    this.pointsP1.setText(String.valueOf(cptPoints));
                 } else {
                     aceP2cpt += 1;
                     secondBallP2 += 1;
@@ -372,7 +375,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                     cptPoints = Integer.parseInt(String.valueOf(pointsP2.getText()));
                     cptPoints += 15;
-                    this.pointsP2.setText(cptPoints);
+                    this.pointsP2.setText(String.valueOf(cptPoints));
                 }
                 break;
 
@@ -381,7 +384,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                 cptPoints = Integer.parseInt(String.valueOf(pointsP1.getText()));
                 cptPoints += 15;
-                this.pointsP1.setText(cptPoints);
+                this.pointsP1.setText(String.valueOf(cptPoints));
                 break;
 
             case R.id.imageView26:
@@ -389,7 +392,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                 cptPoints = Integer.parseInt(String.valueOf(pointsP2.getText()));
                 cptPoints += 15;
-                this.pointsP2.setText(cptPoints);
+                this.pointsP2.setText(String.valueOf(cptPoints));
                 break;
 
             case R.id.imageView25:
@@ -398,7 +401,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                 cptPoints = Integer.parseInt(String.valueOf(pointsP2.getText()));
                 cptPoints += 15;
-                this.pointsP2.setText(cptPoints);
+                this.pointsP2.setText(String.valueOf(cptPoints));
                 break;
 
             case R.id.imageView23:
@@ -407,7 +410,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                 cptPoints = Integer.parseInt(String.valueOf(pointsP1.getText()));
                 cptPoints += 15;
-                this.pointsP1.setText(cptPoints);
+                this.pointsP1.setText(String.valueOf(cptPoints));
                 break;
 
             case R.id.imageView21:
@@ -416,7 +419,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                 cptPoints = Integer.parseInt(String.valueOf(pointsP1.getText()));
                 cptPoints += 15;
-                this.pointsP1.setText(cptPoints);
+                this.pointsP1.setText(String.valueOf(cptPoints));
                 break;
 
             case R.id.imageView15:
@@ -425,7 +428,7 @@ public class RecordingActivity extends AppCompatActivity {
 
                 cptPoints = Integer.parseInt(String.valueOf(pointsP2.getText()));
                 cptPoints += 15;
-                this.pointsP2.setText(cptPoints);
+                this.pointsP2.setText(String.valueOf(cptPoints));
                 break;
         }
 
@@ -437,23 +440,23 @@ public class RecordingActivity extends AppCompatActivity {
             this.pointsP1.setText("0");
             this.pointsP2.setText("0");
 
-            if (set1 == true) {
+            if (set1) {
                 scoreSet1P1 += 1;
-                this.set1P1.setText(scoreSet1P1);
+                this.set1P1.setText(String.valueOf(scoreSet1P1));
             } else {
                 scoreSet2P1 += 1;
-                this.set2P1.setText(scoreSet2P1);
+                this.set2P1.setText(String.valueOf(scoreSet2P1));
             }
         } else if (pointsP2cpt > 45 && pointsP1cpt <= 45) {
             this.pointsP1.setText("0");
             this.pointsP2.setText("0");
 
-            if (set1 == true) {
+            if (set1) {
                 scoreSet1P2 += 1;
-                this.set1P2.setText(scoreSet1P2);
+                this.set1P2.setText(String.valueOf(scoreSet1P2));
             } else {
                 scoreSet2P2 += 1;
-                this.set2P2.setText(scoreSet2P2);
+                this.set2P2.setText(String.valueOf(scoreSet2P2));
             }
         }
 
